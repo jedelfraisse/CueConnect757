@@ -1,0 +1,30 @@
+﻿using GraphQL;
+using GraphQL.Client.Http;
+using GraphQL.Client.Serializer.Newtonsoft;
+
+namespace ConnectAPA.GraphQL;
+
+public class ApaGraphQlClient
+{
+	private readonly GraphQLHttpClient _client;
+
+	public ApaGraphQlClient(HttpClient http)
+	{
+		_client = new GraphQLHttpClient(new GraphQLHttpClientOptions
+		{
+			EndPoint = new Uri("https://gql.poolplayers.com/graphql")
+		}, new NewtonsoftJsonSerializer(), http);
+	}
+
+	public async Task<T> SendAsync<T>(string query, object variables)
+	{
+		var request = new GraphQLRequest
+		{
+			Query = query,
+			Variables = variables
+		};
+
+		var response = await _client.SendQueryAsync<T>(request);
+		return response.Data;
+	}
+}

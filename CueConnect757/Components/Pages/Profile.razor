@@ -1,0 +1,388 @@
+@page "/profile"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@inject UserInfoService UserInfoService
+@inject UserProfileService ProfileService
+@inject NavigationManager Navigation
+
+<PageTitle>Profile - CueConnect757</PageTitle>
+
+<PageHeader Title="My Profile" Description="View and manage your profile information" />
+
+<div class="main-content">
+    @if (isLoading)
+    {
+        <p>Loading profile...</p>
+    }
+    else if (userInfo != null)
+    {
+        <div class="profile-grid">
+            <!-- Identity Provider Information (Read-Only) -->
+            <div class="profile-section">
+                <h2>Identity Provider Information</h2>
+                <p class="section-description">This information comes from your identity provider and cannot be changed here.</p>
+                
+                <div class="form-group-readonly">
+                    <label>Full Name</label>
+                    <div class="readonly-value">@userInfo.Name</div>
+                </div>
+
+                <div class="form-group-readonly">
+                    <label>Email</label>
+                    <div class="readonly-value">@userInfo.Email</div>
+                </div>
+
+                <div class="form-group-readonly">
+                    <label>User ID</label>
+                    <div class="readonly-value">@userInfo.UserId</div>
+                </div>
+
+                <div class="form-group-readonly">
+                    <label>Identity Provider</label>
+                    <div class="readonly-value">
+                        @GetIdentityProvider()
+                    </div>
+                </div>
+            </div>
+
+            <!-- Local Profile (Editable) -->
+            <div class="profile-section">
+                <h2>Local Profile Settings</h2>
+                <p class="section-description">These settings are stored locally and can be customized.</p>
+
+                <EditForm Model="@profileModel" OnValidSubmit="@SaveProfile">
+                    <DataAnnotationsValidator />
+                    
+                    <div class="form-group">
+                        <label for="nickname">Nickname</label>
+                        <InputText id="nickname" class="form-control" @bind-Value="profileModel.Nickname" placeholder="Enter a nickname" />
+                        <ValidationMessage For="@(() => profileModel.Nickname)" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="displayName">Preferred Display Name</label>
+                        <InputText id="displayName" class="form-control" @bind-Value="profileModel.PreferredDisplayName" placeholder="How should we display your name?" />
+                        <ValidationMessage For="@(() => profileModel.PreferredDisplayName)" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timezone">Time Zone</label>
+                        <InputSelect id="timezone" class="form-control" @bind-Value="profileModel.TimeZone">
+                            <option value="">Select time zone...</option>
+                            <option value="America/New_York">Eastern Time (ET)</option>
+                            <option value="America/Chicago">Central Time (CT)</option>
+                            <option value="America/Denver">Mountain Time (MT)</option>
+                            <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => profileModel.TimeZone)" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notification Preferences</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <InputCheckbox @bind-Value="profileModel.EmailNotifications" />
+                                Email notifications
+                            </label>
+                            <label class="checkbox-label">
+                                <InputCheckbox @bind-Value="profileModel.MatchReminders" />
+                                Match reminders
+                            </label>
+                            <label class="checkbox-label">
+                                <InputCheckbox @bind-Value="profileModel.TournamentAlerts" />
+                                Tournament alerts
+                            </label>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(saveMessage))
+                    {
+                        <div class="alert alert-success">@saveMessage</div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger">@errorMessage</div>
+                    }
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                            @if (isSaving)
+                            {
+                                <span>Saving...</span>
+                            }
+                            else
+                            {
+                                <span>Save Changes</span>
+                            }
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    @@media (max-width: 968px) {
+        .profile-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .profile-section {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 2rem;
+    }
+
+    .profile-section h2 {
+        margin: 0 0 0.5rem 0;
+        color: #08AFF2;
+        font-size: 1.5rem;
+    }
+
+    .section-description {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group-readonly {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group-readonly label {
+        display: block;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .readonly-value {
+        padding: 0.75rem;
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        color: #666;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #08AFF2;
+        box-shadow: 0 0 0 3px rgba(8, 175, 242, 0.1);
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+    }
+
+    .btn-primary {
+        background: #08AFF2;
+        color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        background: #0799d6;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(8, 175, 242, 0.3);
+    }
+
+    .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-danger {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+</style>
+
+@code {
+    private UserInfo? userInfo;
+    private ProfileFormModel profileModel = new();
+    private bool isLoading = true;
+    private bool isSaving = false;
+    private string? saveMessage;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            userInfo = await UserInfoService.GetUserInfoAsync();
+            
+            if (userInfo?.UserId != null)
+            {
+                var profile = await ProfileService.GetOrCreateUserProfileAsync(userInfo.UserId);
+                
+                profileModel.Nickname = profile.Nickname;
+                profileModel.PreferredDisplayName = profile.PreferredDisplayName;
+                profileModel.TimeZone = profile.TimeZone;
+
+                // Load notification preferences
+                var prefs = await ProfileService.GetNotificationPreferencesAsync<NotificationPreferences>(userInfo.UserId);
+                if (prefs != null)
+                {
+                    profileModel.EmailNotifications = prefs.EmailNotifications;
+                    profileModel.MatchReminders = prefs.MatchReminders;
+                    profileModel.TournamentAlerts = prefs.TournamentAlerts;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading profile: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task SaveProfile()
+    {
+        isSaving = true;
+        saveMessage = null;
+        errorMessage = null;
+
+        try
+        {
+            if (userInfo?.UserId == null)
+            {
+                errorMessage = "User not authenticated";
+                return;
+            }
+
+            var profile = await ProfileService.GetOrCreateUserProfileAsync(userInfo.UserId);
+            
+            profile.Nickname = profileModel.Nickname;
+            profile.PreferredDisplayName = profileModel.PreferredDisplayName;
+            profile.TimeZone = profileModel.TimeZone;
+
+            await ProfileService.UpdateUserProfileAsync(profile);
+
+            // Save notification preferences
+            var prefs = new NotificationPreferences
+            {
+                EmailNotifications = profileModel.EmailNotifications,
+                MatchReminders = profileModel.MatchReminders,
+                TournamentAlerts = profileModel.TournamentAlerts
+            };
+
+            await ProfileService.SetNotificationPreferencesAsync(userInfo.UserId, prefs);
+
+            saveMessage = "Profile saved successfully!";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving profile: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private string GetIdentityProvider()
+    {
+        var idpClaim = userInfo?.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/identity/claims/identityprovider");
+        
+        if (idpClaim?.Value != null)
+        {
+            return idpClaim.Value switch
+            {
+                "live.com" => "Microsoft Account",
+                "google.com" => "Google",
+                "facebook.com" => "Facebook",
+                _ => idpClaim.Value
+            };
+        }
+
+        return "Microsoft Entra ID";
+    }
+
+    public class ProfileFormModel
+    {
+        public string? Nickname { get; set; }
+        public string? PreferredDisplayName { get; set; }
+        public string? TimeZone { get; set; }
+        public bool EmailNotifications { get; set; } = true;
+        public bool MatchReminders { get; set; } = true;
+        public bool TournamentAlerts { get; set; } = true;
+    }
+
+    public class NotificationPreferences
+    {
+        public bool EmailNotifications { get; set; }
+        public bool MatchReminders { get; set; }
+        public bool TournamentAlerts { get; set; }
+    }
+}

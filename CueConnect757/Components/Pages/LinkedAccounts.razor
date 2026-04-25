@@ -1,0 +1,350 @@
+@page "/linked-accounts"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@inject UserInfoService UserInfoService
+@inject UserProfileService ProfileService
+@inject ApaLinkingService ApaLinking
+@inject NavigationManager Navigation
+
+<PageTitle>Linked Accounts - CueConnect757</PageTitle>
+
+<PageHeader Title="Linked Accounts" Description="Connect your external accounts to enhance your CueConnect757 experience" />
+
+<div class="main-content">
+    @if (isLoading)
+    {
+        <p>Loading linked accounts...</p>
+    }
+    else if (userInfo != null)
+    {
+        <div class="accounts-grid">
+            <!-- Microsoft Account (Always Connected) -->
+            <div class="account-card connected">
+                <div class="account-icon">Ⓜ️</div>
+                <div class="account-info">
+                    <h3>Microsoft Account</h3>
+                    <p class="account-description">Your primary sign-in method</p>
+                    <div class="account-status">
+                        <span class="status-badge status-connected">✓ Connected</span>
+                    </div>
+                    <p class="account-email">@userInfo.Email</p>
+                </div>
+            </div>
+
+            <!-- APA Account -->
+            <div class="account-card @(isApaLinked ? "connected" : "")">
+                <div class="account-icon">🎱</div>
+                <div class="account-info">
+                    <h3>APA Account</h3>
+                    <p class="account-description">Access your APA stats, skill level, and membership history</p>
+                    
+                    @if (isApaLinked)
+                    {
+                        <div class="account-status">
+                            <span class="status-badge status-connected">✓ Connected</span>
+                        </div>
+                        <div class="account-actions">
+                            <button class="btn btn-secondary" @onclick="UnlinkApa" disabled="@isUnlinking">
+                                @if (isUnlinking)
+                                {
+                                    <span>Unlinking...</span>
+                                }
+                                else
+                                {
+                                    <span>Unlink Account</span>
+                                }
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="account-status">
+                            <span class="status-badge status-disconnected">Not Connected</span>
+                        </div>
+                        <div class="account-actions">
+                            <button class="btn btn-primary" @onclick="LinkApa">
+                                Connect APA Account
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Facebook (Future) -->
+            <div class="account-card disabled">
+                <div class="account-icon">📘</div>
+                <div class="account-info">
+                    <h3>Facebook</h3>
+                    <p class="account-description">Sign in with Facebook</p>
+                    <div class="account-status">
+                        <span class="status-badge status-coming-soon">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google (Future) -->
+            <div class="account-card disabled">
+                <div class="account-icon">🔍</div>
+                <div class="account-info">
+                    <h3>Google</h3>
+                    <p class="account-description">Sign in with Google</p>
+                    <div class="account-status">
+                        <span class="status-badge status-coming-soon">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(successMessage))
+        {
+            <div class="alert alert-success">@successMessage</div>
+        }
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger">@errorMessage</div>
+        }
+    }
+</div>
+
+<style>
+    .accounts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .account-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 2rem;
+        transition: all 0.3s;
+    }
+
+    .account-card.connected {
+        border-color: #28a745;
+        background: #f8fff9;
+    }
+
+    .account-card.disabled {
+        opacity: 0.6;
+    }
+
+    .account-card:not(.disabled):hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .account-info h3 {
+        margin: 0 0 0.5rem 0;
+        color: #333;
+        font-size: 1.25rem;
+    }
+
+    .account-description {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .account-status {
+        margin-bottom: 1rem;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .status-connected {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-disconnected {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .status-coming-soon {
+        background: #e2e3e5;
+        color: #383d41;
+    }
+
+    .account-email {
+        font-size: 0.875rem;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+
+    .account-actions {
+        margin-top: 1rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+    }
+
+    .btn-primary {
+        background: #08AFF2;
+        color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        background: #0799d6;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(8, 175, 242, 0.3);
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+        background: #5a6268;
+    }
+
+    .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 6px;
+        margin-top: 2rem;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-danger {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+</style>
+
+@code {
+    private UserInfo? userInfo;
+    private bool isLoading = true;
+    private bool isApaLinked = false;
+    private bool isUnlinking = false;
+    private string? successMessage;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            userInfo = await UserInfoService.GetUserInfoAsync();
+            
+            if (userInfo?.UserId != null)
+            {
+                isApaLinked = await ProfileService.IsApaLinkedAsync(userInfo.UserId);
+            }
+
+            // Check if we just came back from APA OAuth
+            var uri = new Uri(Navigation.Uri);
+            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+            var apaToken = query["apatoken"];
+
+            if (!string.IsNullOrWhiteSpace(apaToken) && userInfo?.UserId != null)
+            {
+                await HandleApaCallback(apaToken);
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading accounts: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void LinkApa()
+    {
+        var redirectUri = $"{Navigation.BaseUri}linked-accounts";
+        var authUrl = ApaLinking.GetApaAuthorizationUrl(redirectUri);
+        Navigation.NavigateTo(authUrl, forceLoad: true);
+    }
+
+    private async Task HandleApaCallback(string refreshToken)
+    {
+        try
+        {
+            if (userInfo?.UserId == null)
+            {
+                errorMessage = "User not authenticated";
+                return;
+            }
+
+            var success = await ApaLinking.ExchangeRefreshTokenAsync(userInfo.UserId, refreshToken);
+            
+            if (success)
+            {
+                isApaLinked = true;
+                successMessage = "APA account linked successfully!";
+                
+                // Remove token from URL
+                Navigation.NavigateTo("/linked-accounts", forceLoad: false);
+            }
+            else
+            {
+                errorMessage = "Failed to link APA account. Please try again.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error linking APA account: {ex.Message}";
+        }
+    }
+
+    private async Task UnlinkApa()
+    {
+        if (userInfo?.UserId == null)
+            return;
+
+        isUnlinking = true;
+        errorMessage = null;
+        successMessage = null;
+
+        try
+        {
+            await ProfileService.UnlinkApaAccountAsync(userInfo.UserId);
+            isApaLinked = false;
+            successMessage = "APA account unlinked successfully.";
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error unlinking APA account: {ex.Message}";
+        }
+        finally
+        {
+            isUnlinking = false;
+        }
+    }
+}

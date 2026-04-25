@@ -1,0 +1,49 @@
+﻿@page "/teams"
+
+<PageTitle>Teams - CueConnect757</PageTitle>
+
+<PageHeader Title="Find Teams & Players" Description="Connect with pool teams looking for players or find players to join your roster." />
+
+<div class="main-content">
+    <p class="lead">
+        Build your team and compete in local leagues and tournaments across Hampton Roads.
+    </p>
+
+    <div class="content-placeholder">
+        <h2>Team Directory</h2>
+        <p>This page will feature:</p>
+        <ul>
+            <li>Directory of teams in Hampton Roads leagues</li>
+            <li>Teams looking for players</li>
+            <li>Players looking for teams</li>
+            <li>Team profiles with rosters and stats</li>
+            <li>Contact team captains</li>
+            <li>Post your team or player availability</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .lead {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+    }
+
+    .content-placeholder {
+        background: #f8f9fa;
+        border-left: 4px solid #08AFF2;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+
+    .content-placeholder h2 {
+        color: #08AFF2;
+        margin-top: 0;
+    }
+
+    .content-placeholder ul {
+        line-height: 1.8;
+    }
+</style>

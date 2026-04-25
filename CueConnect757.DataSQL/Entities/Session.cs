@@ -1,0 +1,16 @@
+namespace CueConnect757.DataSQL.Entities;
+
+public class Session
+{
+    public int Id { get; set; }
+    public int SessionIdFromAPA { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public DateOnly StartDate { get; set; }
+    public DateOnly EndDate { get; set; }
+
+    public DateTime? LastSyncedAt { get; set; }
+    public string SyncSource { get; set; } = "Manual";
+
+    public ICollection<Division> Divisions { get; set; } = new List<Division>();
+    public ICollection<PlayerSessionStats> PlayerSessionStats { get; set; } = new List<PlayerSessionStats>();
+}

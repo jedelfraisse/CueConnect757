@@ -1,0 +1,18 @@
+query Schedule($divisionId: Int!) {
+  division(id: $divisionId) {
+    id
+    name
+    matches {
+      id
+      date
+      homeTeam {
+        id
+        name
+      }
+      awayTeam {
+        id
+        name
+      }
+    }
+  }
+}

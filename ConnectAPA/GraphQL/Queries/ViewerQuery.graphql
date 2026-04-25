@@ -1,0 +1,18 @@
+query ViewerQuery {
+  viewer {
+    id
+    name
+    email
+    aliases {
+      id
+      firstName
+      lastName
+      skillLevel
+      playsSince
+      teams {
+        id
+        name
+      }
+    }
+  }
+}

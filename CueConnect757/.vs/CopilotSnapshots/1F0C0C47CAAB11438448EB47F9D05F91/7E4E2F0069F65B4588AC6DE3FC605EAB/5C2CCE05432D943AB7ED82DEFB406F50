@@ -1,0 +1,108 @@
+﻿@page "/test-apa-private"
+@rendermode InteractiveServer
+@using ConnectAPA.GraphQL
+@using ConnectAPA.Models.Alias
+@using CueConnect757.Services
+@using System.Security.Claims
+@inject ApaGraphQlClient ApaClient
+@inject UserInfoService UserInfo
+@inject ApaLinkingService ApaLinking
+
+<PageTitle>Test APA Private API</PageTitle>
+
+<h3>APA Authenticated API Test</h3>
+
+<div class="main-content">
+    <div class="mb-3">
+        <button class="btn btn-primary" @onclick="LoadViewerDataAsync" disabled="@IsLoading">
+            @if (IsLoading)
+            {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            Load My APA Profile
+        </button>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong> @ErrorMessage
+        </div>
+    }
+
+    @if (ViewerData?.Viewer is not null)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@ViewerData.Viewer.Name</h5>
+                <p><strong>ID:</strong> @ViewerData.Viewer.Id</p>
+                <p><strong>Email:</strong> @ViewerData.Viewer.Email</p>
+
+                @if (ViewerData.Viewer.Aliases.Count > 0)
+                {
+                    <h6 class="mt-3">Player Aliases (@ViewerData.Viewer.Aliases.Count)</h6>
+                    @foreach (var alias in ViewerData.Viewer.Aliases)
+                    {
+                        <div class="card mt-2">
+                            <div class="card-body">
+                                <h6>@alias.FirstName @alias.LastName</h6>
+                                <p class="mb-1"><strong>Skill Level:</strong> @alias.SkillLevel</p>
+                                <p class="mb-1"><strong>Plays Since:</strong> @alias.PlaysSince</p>
+
+                                @if (alias.Teams.Count > 0)
+                                {
+                                    <p class="mb-1"><strong>Teams:</strong></p>
+                                    <ul>
+                                        @foreach (var team in alias.Teams)
+                                        {
+                                            <li>@team.Name (ID: @team.Id)</li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool IsLoading { get; set; }
+    private string ErrorMessage { get; set; } = string.Empty;
+    private ViewerResponse? ViewerData { get; set; }
+
+    private async Task LoadViewerDataAsync()
+    {
+        IsLoading = true;
+        ErrorMessage = string.Empty;
+        ViewerData = null;
+
+        try
+        {
+            var userInfo = await UserInfo.GetUserInfoAsync();
+            if (!userInfo.IsAuthenticated || string.IsNullOrWhiteSpace(userInfo.UserId))
+            {
+                ErrorMessage = "User not logged in.";
+                return;
+            }
+
+            var query = await File.ReadAllTextAsync("..\\ConnectAPA\\GraphQL\\Queries\\ViewerQuery.graphql");
+            ViewerData = await ApaLinking.ExecuteApaGraphQlQueryAsync<ViewerResponse>(userInfo.UserId, query);
+
+            if (ViewerData is null || ViewerData.Viewer is null)
+            {
+                ErrorMessage = "No data returned. Make sure you have linked your APA account.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

@@ -1,0 +1,144 @@
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+
+namespace CueConnect757.Services;
+
+public class ApaLinkingService
+{
+    private readonly HttpClient _httpClient;
+    private readonly UserProfileService _userProfileService;
+    private const string ApaGraphQlEndpoint = "https://gql.poolplayers.com/graphql";
+
+    public ApaLinkingService(HttpClient httpClient, UserProfileService userProfileService)
+    {
+        _httpClient = httpClient;
+        _userProfileService = userProfileService;
+    }
+
+    public string GetApaAuthorizationUrl(string redirectUri)
+    {
+        var encodedRedirectUri = Uri.EscapeDataString(redirectUri);
+        return $"https://accounts.poolplayers.com/login?redirect_uri={encodedRedirectUri}";
+    }
+
+    public async Task<bool> ExchangeRefreshTokenAsync(string userId, string refreshToken)
+    {
+        try
+        {
+            // Test the refresh token by attempting to get an access token
+            var accessToken = await GetAccessTokenFromRefreshTokenAsync(refreshToken);
+            
+            if (string.IsNullOrWhiteSpace(accessToken))
+                return false;
+
+            // Store the refresh token
+            await _userProfileService.LinkApaAccountAsync(userId, refreshToken);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public async Task<string?> GetAccessTokenFromRefreshTokenAsync(string refreshToken)
+    {
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, "https://accounts.poolplayers.com/oauth/token");
+            
+            var body = new
+            {
+                grant_type = "refresh_token",
+                refresh_token = refreshToken
+            };
+
+            request.Content = new StringContent(
+                JsonSerializer.Serialize(body),
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var response = await _httpClient.SendAsync(request);
+            
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var tokenResponse = JsonSerializer.Deserialize<TokenResponse>(responseContent);
+            
+            return tokenResponse?.AccessToken;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task<string?> GetAccessTokenForUserAsync(string userId)
+    {
+        var refreshToken = await _userProfileService.GetApaRefreshTokenAsync(userId);
+        
+        if (string.IsNullOrWhiteSpace(refreshToken))
+            return null;
+
+        return await GetAccessTokenFromRefreshTokenAsync(refreshToken);
+    }
+
+    public async Task<T?> ExecuteApaGraphQlQueryAsync<T>(string userId, string query, object? variables = null)
+    {
+        var accessToken = await GetAccessTokenForUserAsync(userId);
+        
+        if (string.IsNullOrWhiteSpace(accessToken))
+            return default;
+
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, ApaGraphQlEndpoint);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var graphQlRequest = new[]
+            {
+                new
+                {
+                    query,
+                    variables
+                }
+            };
+
+            request.Content = new StringContent(
+                JsonSerializer.Serialize(graphQlRequest),
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var response = await _httpClient.SendAsync(request);
+            
+            if (!response.IsSuccessStatusCode)
+                return default;
+
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var graphQlResponses = JsonSerializer.Deserialize<GraphQlResponse<T>[]>(responseContent);
+
+            return graphQlResponses != null && graphQlResponses.Length > 0 ? graphQlResponses[0].Data : default;
+        }
+        catch
+        {
+            return default;
+        }
+    }
+
+    private class TokenResponse
+    {
+        public string? AccessToken { get; set; }
+        public string? RefreshToken { get; set; }
+        public int ExpiresIn { get; set; }
+    }
+
+    private class GraphQlResponse<T>
+    {
+        public T? Data { get; set; }
+        public object[]? Errors { get; set; }
+    }
+}

@@ -1,0 +1,54 @@
+﻿@page "/leagues"
+
+<PageTitle>Leagues - CueConnect757</PageTitle>
+
+<PageHeader Title="League Directory" Description="Find APA, BCA, USAPL, junior leagues, and in-house leagues across Hampton Roads." />
+
+<div class="main-content">
+	<h1>Billiards Leagues in Hampton Roads</h1>
+	<p class="lead">
+		Discover and join APA, BCA, USAPL junior leagues, and in-house leagues across all of Hampton Roads. 
+		Find the perfect league for your skill level and schedule.
+	</p>
+
+	<div class="content-placeholder">
+		<h2>Browse Leagues</h2>
+		<p>This page will feature:</p>
+		<ul>
+			<li>List of all active leagues in the 757/948 area</li>
+			<li>Filter by league type (APA, BCA, USAPL, In-House)</li>
+			<li>Filter by location and night of play</li>
+			<li>League details: format, divisions, sessions</li>
+			<li>Contact information and registration links</li>
+		</ul>
+	</div>
+</div>
+
+<style>
+	.lead {
+		font-size: 1.2rem;
+		color: #666;
+		margin-bottom: 2rem;
+	}
+
+	.content-placeholder {
+		background: #f8f9fa;
+		border-left: 4px solid #08AFF2;
+		padding: 2rem;
+		border-radius: 8px;
+		margin-top: 2rem;
+	}
+
+	.content-placeholder h2 {
+		color: #08AFF2;
+		margin-top: 0;
+	}
+
+	.content-placeholder ul {
+		line-height: 1.8;
+	}
+</style>
+
+@code {
+
+}

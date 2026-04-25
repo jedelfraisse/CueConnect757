@@ -1,0 +1,14 @@
+﻿@page "/leagues"
+
+<PageTitle>League Directory</PageTitle>
+
+<PageHeader Title="League Directory" Description="Find APA, BCA, USAPL, junior leagues, and in-house leagues across Hampton Roads." />
+
+<div class="main-content">
+
+
+	</div>
+
+@code {
+
+}

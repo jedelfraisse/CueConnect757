@@ -1,0 +1,262 @@
+﻿@page "/test-apa-public"
+@rendermode InteractiveServer
+@using ConnectAPA.Public
+@using ConnectAPA.Models.Public
+@inject PublicApaClient PublicAPA
+
+<PageTitle>Test APA Public API</PageTitle>
+
+<h3>APA Public API Test - Southside League</h3>
+
+<div class="main-content">
+    @if (IsLoading)
+    {
+        <div class="alert alert-info">
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Loading Southside league data...
+        </div>
+    }
+    else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong> @ErrorMessage
+        </div>
+    }
+    else if (League is not null)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4 class="card-title">@League.Name</h4>
+                <p class="text-muted mb-0">League ID: @League.Id | Slug: @League.Slug</p>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title mb-0">Divisions (@Divisions.Count)</h5>
+                            <button class="btn btn-sm btn-primary" @onclick="LoadDivisionsAsync" disabled="@IsLoadingDivisions">
+                                @if (IsLoadingDivisions)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-1"></span>
+                                }
+                                Load Divisions
+                            </button>
+                        </div>
+                        @if (Divisions.Count == 0)
+                        {
+                            <p class="text-muted mb-0">No divisions found.</p>
+                        }
+                        else
+                        {
+                            <div class="list-group">
+                                @foreach (var division in Divisions)
+                                {
+                                    <button type="button" 
+                                            class="list-group-item list-group-item-action @(SelectedDivisionId == division.Id ? "active" : "")"
+                                            @onclick="() => SelectDivisionAsync(division.Id)">
+                                        <strong>@division.Name</strong>
+                                        @if (division.Session is not null)
+                                        {
+                                            <br />
+                                            <small>@division.Session.Name</small>
+                                        }
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Latest News (@LeaguePosts.Count)</h5>
+                        @if (LeaguePosts.Count == 0)
+                        {
+                            <p class="text-muted mb-0">No posts found.</p>
+                        }
+                        else
+                        {
+                            <ul class="list-unstyled mb-0">
+                                @foreach (var post in LeaguePosts)
+                                {
+                                    <li class="mb-2">
+                                        <strong>@post.Title</strong>
+                                        @if (post.CreatedAt.HasValue)
+                                        {
+                                            <br />
+                                            <small class="text-muted">@post.CreatedAt.Value.ToString("MMM dd, yyyy")</small>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (SelectedDivisionId > 0)
+        {
+            <div class="row g-3">
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Teams (@Teams.Count)</h5>
+                            @if (IsLoadingDivision)
+                            {
+                                <div class="spinner-border spinner-border-sm"></div>
+                            }
+                            else if (Teams.Count == 0)
+                            {
+                                <p class="text-muted mb-0">No teams found.</p>
+                            }
+                            else
+                            {
+                                <ul class="mb-0">
+                                    @foreach (var team in Teams)
+                                    {
+                                        <li>@team.Name</li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Schedule (@Schedule.Count)</h5>
+                            @if (IsLoadingDivision)
+                            {
+                                <div class="spinner-border spinner-border-sm"></div>
+                            }
+                            else if (Schedule.Count == 0)
+                            {
+                                <p class="text-muted mb-0">No matches scheduled.</p>
+                            }
+                            else
+                            {
+                                <table class="table table-sm mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Home</th>
+                                            <th>Away</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var match in Schedule)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (match.Date.HasValue)
+                                                    {
+                                                        @match.Date.Value.ToString("MM/dd/yyyy")
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-muted">TBD</span>
+                                                    }
+                                                </td>
+                                                <td>@(match.HomeTeam?.Name ?? "TBD")</td>
+                                                <td>@(match.AwayTeam?.Name ?? "TBD")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private bool IsLoading { get; set; } = true;
+    private bool IsLoadingDivision { get; set; }
+    private bool IsLoadingDivisions { get; set; }
+    private string ErrorMessage { get; set; } = string.Empty;
+
+    private League? League { get; set; }
+    private List<Division> Divisions { get; set; } = [];
+    private List<LeaguePost> LeaguePosts { get; set; } = [];
+
+    private int SelectedDivisionId { get; set; }
+    private List<Team> Teams { get; set; } = [];
+    private List<Match> Schedule { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            League = await PublicAPA.GetLeagueLayoutAsync("southside");
+            LeaguePosts = await PublicAPA.GetLeaguePostsAsync("southside", 10, 0);
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task LoadDivisionsAsync()
+    {
+        IsLoadingDivisions = true;
+        ErrorMessage = string.Empty;
+        Divisions = [];
+        SelectedDivisionId = 0;
+        Teams = [];
+        Schedule = [];
+
+        try
+        {
+            Divisions = await PublicAPA.GetDivisionsAsync("southside");
+
+            if (Divisions.Count > 0)
+            {
+                await SelectDivisionAsync(Divisions[0].Id);
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        finally
+        {
+            IsLoadingDivisions = false;
+        }
+    }
+
+    private async Task SelectDivisionAsync(int divisionId)
+    {
+        SelectedDivisionId = divisionId;
+        IsLoadingDivision = true;
+        Teams = [];
+        Schedule = [];
+
+        try
+        {
+            Teams = await PublicAPA.GetTeamsAsync(divisionId);
+            Schedule = await PublicAPA.GetScheduleAsync(divisionId);
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        finally
+        {
+            IsLoadingDivision = false;
+        }
+    }
+}

@@ -1,0 +1,180 @@
+﻿# Copilot Instructions
+
+## ConnectAPA
+These instructions apply when generating or modifying code in the `ConnectAPA` project.
+
+`ConnectAPA` is responsible only for communicating with the APA GraphQL API.
+
+- Endpoint: `https://gql.poolplayers.com/graphql`
+- Do not generate SQL, Entity Framework, or CueConnect application logic in this project.
+
+---
+
+## Core Requirements
+- Use `HttpClient` for all HTTP communication.
+- Send all GraphQL requests to `https://gql.poolplayers.com/graphql`.
+- APA requires batched GraphQL requests, even for a single operation.
+- Always send requests as a JSON array of `GraphQlRequest` objects.
+- Always include the header `Authorization: Bearer {token}`.
+- If no bearer token is available, fail fast instead of sending the request anonymously.
+- Store GraphQL queries in `.graphql` files under `GraphQL/Queries/`.
+- Load raw GraphQL text from those `.graphql` files.
+- Do not hardcode GraphQL query strings in C# unless explicitly requested.
+- Use `System.Text.Json` for serialization and deserialization.
+- Do not use `GraphQL.Client`.
+- Do not use `Newtonsoft.Json`.
+- Do not attempt schema introspection. APA blocks it.
+
+---
+
+## Project Structure
+`ConnectAPA/`
+- `ApaClient.cs`
+- `GraphQL/`
+  - `GraphQlRequest.cs`
+  - `GraphQlResponse.cs`
+  - `GraphQlError.cs`
+  - `Queries/`
+    - `ViewerQuery.graphql`
+    - `LeagueQuery.graphql`
+    - `DivisionRosters.graphql`
+    - `DivisionMatches.graphql`
+    - `AliasSessionStats.graphql`
+    - `GetEightBallStats.graphql`
+    - `GetMembershipHistory.graphql`
+- `Models/`
+  - `Viewer/`
+  - `League/`
+  - `Division/`
+  - `Team/`
+  - `Player/`
+  - `Stats/`
+
+Follow this structure unless the user explicitly requests a different one.
+
+---
+
+## GraphQL Request Format
+APA expects an array of operations.
+
+Example request payload:
+
+```json
+[
+  {
+    "operationName": "ViewerQuery",
+    "variables": {},
+    "query": "query ViewerQuery { viewer { id __typename } }"
+  }
+]
+```
+
+Copilot should always generate this format, even for one operation.
+
+---
+
+## GraphQL Types
+
+### `GraphQlRequest.cs`
+```csharp
+public sealed class GraphQlRequest
+{
+    public string OperationName { get; set; } = string.Empty;
+    public string Query { get; set; } = string.Empty;
+    public object? Variables { get; set; }
+}
+```
+
+### `GraphQlResponse.cs`
+```csharp
+public sealed class GraphQlResponse<T>
+{
+    public T? Data { get; set; }
+    public GraphQlError[] Errors { get; set; } = [];
+}
+```
+
+### `GraphQlError.cs`
+```csharp
+public sealed class GraphQlError
+{
+    public string Message { get; set; } = string.Empty;
+}
+```
+
+---
+
+## `ApaClient` Requirements
+Prefer this public shape unless the user asks for something else:
+
+```csharp
+public class ApaClient
+{
+    private readonly HttpClient _http;
+
+    public string AccessToken { get; set; } = string.Empty;
+
+    public ApaClient(HttpClient http)
+    {
+        _http = http;
+    }
+
+    public Task<T> SendAsync<T>(string operationName, string query, object? variables);
+    public Task<T[]> SendBatchAsync<T>(IEnumerable<GraphQlRequest> requests);
+}
+```
+
+Behavior rules:
+- `SendAsync<T>` should wrap a single request into a one-item batch.
+- `SendBatchAsync<T>` should send an array payload.
+- Deserialize responses as `GraphQlResponse<T>[]`.
+- If any response contains GraphQL errors, throw an exception with the returned messages.
+- If the HTTP response is not successful, throw an exception.
+- Attach the bearer token on every request.
+- Keep the client focused on transport and serialization only.
+
+---
+
+## Query File Rules
+- Put each query in its own `.graphql` file.
+- Name files after the operation they contain.
+- Prefer loading query text from disk or embedded resources.
+- Keep C# free of large inline GraphQL strings when working in `ConnectAPA`.
+
+---
+
+## Starter Query
+Use this as the default test query when needed.
+
+### `ViewerQuery.graphql`
+```graphql
+query ViewerQuery {
+  viewer {
+    id
+    __typename
+    ... on Member {
+      firstName
+      lastName
+      emailAddress
+      leagues(current: true) {
+        id
+        name
+        slug
+      }
+    }
+  }
+}
+```
+
+---
+
+## Summary Rules
+- Use `HttpClient`.
+- Use `System.Text.Json`.
+- Use `https://gql.poolplayers.com/graphql`.
+- Use batched GraphQL payloads only.
+- Use bearer token auth on every request.
+- Load queries from `.graphql` files.
+- Do not use `GraphQL.Client`.
+- Do not use `Newtonsoft.Json`.
+- Do not add SQL or EF logic to `ConnectAPA`.

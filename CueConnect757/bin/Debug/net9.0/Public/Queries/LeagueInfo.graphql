@@ -1,0 +1,15 @@
+query LeagueInfo($slug: String!) {
+  league(slug: $slug) {
+    id
+    name
+    slug
+    operators {
+      id
+      name
+    }
+    news(limit: 10) {
+      id
+      title
+    }
+  }
+}

@@ -1,0 +1,11 @@
+C:\Work\CueConnect757\ConnectBCA\bin\Debug\net9.0\ConnectBCA.deps.json
+C:\Work\CueConnect757\ConnectBCA\bin\Debug\net9.0\ConnectBCA.dll
+C:\Work\CueConnect757\ConnectBCA\bin\Debug\net9.0\ConnectBCA.pdb
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ConnectBCA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ConnectBCA.AssemblyInfoInputs.cache
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ConnectBCA.AssemblyInfo.cs
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ConnectBCA.csproj.CoreCompileInputs.cache
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ConnectBCA.dll
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\refint\ConnectBCA.dll
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ConnectBCA.pdb
+C:\Work\CueConnect757\ConnectBCA\obj\Debug\net9.0\ref\ConnectBCA.dll

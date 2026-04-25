@@ -1,0 +1,10 @@
+query Teams($divisionId: Int!) {
+  division(id: $divisionId) {
+    id
+    name
+    teams {
+      id
+      name
+    }
+  }
+}

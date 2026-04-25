@@ -1,0 +1,336 @@
+﻿# Copilot Instructions for ConnectAPA
+
+These instructions apply when generating or modifying code in the `ConnectAPA` project. ConnectAPA communicates with the APA GraphQL API at:
+
+https://gql.poolplayers.com/graphql
+
+**IMPORTANT**: ConnectAPA is a **data retrieval library only**. It fetches data from APA but does NOT:
+- Create database entities or EF Core code
+- Write to SQL database
+- Contain any persistence logic
+
+All database logic belongs in the main CueConnect757 project and uses CueConnect757.DataSQL.
+
+# Public APA Mode (No Authentication)
+
+APA exposes several GraphQL queries publicly. When no bearer token is provided, the API still returns:
+
+- league info (id, name, slug)
+- league layout
+- divisions (id, name)
+- sessions (id, name, startDate) - **NOTE: endDate and weeks NOT available, must estimate**
+- schedules (match dates only, no scores)
+- teams (id, name only)
+- league news
+- feature flags
+- announcements
+
+**Important**: The public API does NOT return:
+- Session end dates (estimated as startDate + 14 weeks)
+- Session week count
+- Team rosters
+- Match results/scores
+- Player statistics
+- Skill levels
+
+Copilot must support a `PublicApaClient` that:
+
+- does NOT attach an Authorization header
+- sends batched GraphQL requests
+- loads `.graphql` files from `GraphQL/Queries/Public/`
+- returns strongly typed models
+- handles `viewer: null` responses safely
+- handles missing optional fields gracefully (e.g., dates)
+
+PublicApaClient must NOT query:
+- divisionRosters
+- divisionMatches with results
+- AliasSessionStats
+- GetEightBallStats
+- MembershipHistory
+- session.endDate
+- session.weeks
+
+These require authentication.
+
+# Authenticated APA Mode
+
+Authenticated queries require a bearer token. These include:
+
+- rosters
+- match results
+- stats
+- membership history
+
+Authenticated mode uses `ApaClient`, `ApaAuthClient`, and `ApaTokenManager`.
+
+# Project Structure
+
+ConnectAPA/
+    Public/
+        PublicApaClient.cs
+        Queries/
+            LeagueLayout.graphql
+            LeagueInfo.graphql
+            LeaguePosts.graphql
+            FeatureFlags.graphql
+            Divisions.graphql
+            Schedule.graphql
+    Auth/
+        ApaClient.cs
+        ApaAuthClient.cs
+        ApaTokenManager.cs
+    GraphQL/
+        GraphQlRequest.cs
+        GraphQlResponse.cs
+        GraphQlError.cs
+    Models/
+        League/
+        Division/
+        Team/
+        Schedule/
+        News/
+
+Follow this structure unless the user explicitly requests otherwise.
+
+# GraphQL Request Format
+
+APA requires an array of operations:
+
+[
+  {
+    "operationName": "ViewerQuery",
+    "variables": {},
+    "query": "query ViewerQuery { viewer { id __typename } }"
+  }
+]
+
+Always generate this format, even for a single request.
+
+# APA Data Sync Strategy
+
+## Data Categories
+
+APA data falls into three categories:
+
+### 1. **Static Reference Data** (Cache aggressively)
+Data that rarely changes and can be cached for days/weeks:
+- League information (name, slug, operators)
+- Session structure (start/end dates, names)
+- Historical match results (completed seasons)
+
+**Strategy**: 
+- Store in CueConnect database with `LastSyncedAt` timestamp
+- Refresh only on explicit user request or when >7 days old
+- Use database as primary source, APA as backup
+
+### 2. **Semi-Dynamic Data** (Cache moderately)
+Data that changes weekly during active season:
+- Division rosters (players join/leave teams)
+- Team standings and stats
+- Current session schedules
+
+**Strategy**:
+- Store in database with `LastSyncedAt` timestamp
+- Refresh when >24 hours old for active sessions
+- Allow manual "refresh" button in UI
+- Serve from database, sync in background
+
+### 3. **Live/Real-Time Data** (Never cache)
+Data that changes frequently:
+- Today's match results
+- Current week scores
+- Live player stats during matches
+
+**Strategy**:
+- Always fetch from APA API
+- Do NOT store in database (too volatile)
+- Display directly from ConnectAPA models
+
+## Database Sync Rules
+
+When syncing APA data to CueConnect757.DataSQL:
+
+1. **League/Division/Team Structure**:
+   - Map APA IDs to database entities: `TeamIdFromAPA`, `DivisionIdFromAPA`, `SessionIdFromAPA`
+   - Store as reference data
+   - Update only when user explicitly syncs or data is >7 days old
+
+2. **Match Schedule** (dates only):
+   - Public API returns schedule dates (no scores)
+   - Store match dates for current/upcoming sessions
+   - Update weekly during active season
+
+3. **Match Results** (requires auth):
+   - Fetch authenticated data for completed matches
+   - Store final scores after matches complete
+   - Never update historical results (immutable)
+
+4. **Player Data**:
+   - Store `AliasId` from APA
+   - Keep skill levels current (update when roster syncs)
+   - Track membership history
+
+5. **Sync Tracking**:
+   Add `LastSyncedAt` and `SyncSource` fields to entities:
+   ```csharp
+   public DateTime? LastSyncedAt { get; set; }
+   public string SyncSource { get; set; } = "APA"; // or "Manual"
+   ```
+
+## Service Layer Pattern
+
+**ConnectAPA Project**:
+- Provides `PublicApaClient` and `ApaGraphQlClient`
+- Returns DTOs/models from APA
+- No database dependencies
+
+**CueConnect757 Services**:
+- Create `ApaSyncService` in main project
+- Inject `PublicApaClient`, `ApaGraphQlClient`, and `CueConnectDbContext`
+- Maps ConnectAPA models → database entities
+- Implements sync logic and timestamps
+- Handles upsert operations
+
+Example:
+```csharp
+// IN CUECONNECT757 PROJECT (not ConnectAPA)
+public class ApaSyncService
+{
+    private readonly PublicApaClient _publicApa;
+    private readonly CueConnectDbContext _db;
+
+    public async Task SyncLeagueAsync(string slug)
+    {
+        var apaLeague = await _publicApa.GetLeagueLayoutAsync(slug);
+
+        // Map to database entities and save
+        // Track LastSyncedAt
+    }
+}
+```
+
+## UI Patterns
+
+When displaying APA data in Blazor pages:
+
+1. **Check database first** for static/semi-dynamic data
+2. Show "Last updated: X hours ago" timestamp
+3. Provide "Refresh" button for manual sync
+4. Show loading indicator during sync
+5. Handle offline scenarios gracefully (show cached data with warning)
+
+## Summary
+
+- **ConnectAPA**: API client library, no database logic
+- **CueConnect757**: Contains sync services, database mapping
+- **Cache aggressively**: Use database for reference data
+- **Sync on-demand**: Let users control when to refresh
+- **Live data**: Fetch directly from API when needed
+
+# GraphQL Types
+
+public sealed class GraphQlRequest
+{
+    public string OperationName { get; set; } = string.Empty;
+    public string Query { get; set; } = string.Empty;
+    public object? Variables { get; set; }
+}
+
+public sealed class GraphQlResponse<T>
+{
+    public T? Data { get; set; }
+    public GraphQlError[] Errors { get; set; } = [];
+}
+
+public sealed class GraphQlError
+{
+    public string Message { get; set; } = string.Empty;
+}
+
+# PublicApaClient Requirements
+
+public class PublicApaClient
+{
+    private readonly HttpClient _http;
+
+    public PublicApaClient(HttpClient http)
+    {
+        _http = http;
+    }
+
+    public Task<T> SendAsync<T>(string operationName, string query, object? variables);
+    public Task<T[]> SendBatchAsync<T>(IEnumerable<GraphQlRequest> requests);
+}
+
+Rules:
+
+- Do NOT attach Authorization header.
+- Always send a JSON array of GraphQlRequest.
+- Deserialize into GraphQlResponse<T>[].
+- Throw exceptions on GraphQL errors or HTTP errors.
+- Load queries from .graphql files under Public/Queries/.
+
+# ApaClient (Authenticated) Requirements
+
+public class ApaClient
+{
+    private readonly HttpClient _http;
+
+    public string AccessToken { get; set; } = string.Empty;
+
+    public ApaClient(HttpClient http)
+    {
+        _http = http;
+    }
+
+    public Task<T> SendAsync<T>(string operationName, string query, object? variables);
+    public Task<T[]> SendBatchAsync<T>(IEnumerable<GraphQlRequest> requests);
+}
+
+Rules:
+
+- Attach Authorization header.
+- Wrap single requests into a one‑item batch.
+- Deserialize as GraphQlResponse<T>[].
+- Throw on GraphQL or HTTP errors.
+
+# TestAPA.razor Usage Pattern
+
+Copilot should generate Blazor code that:
+
+- injects PublicApaClient
+- loads the Southside league layout on initialization
+- displays:
+  - league name
+  - divisions
+  - teams in each division
+  - schedule (dates only)
+  - league news posts
+- uses async OnInitializedAsync
+- binds results to simple lists or tables
+- uses strongly typed models from ConnectAPA.Models
+- uses only public APA queries
+
+Example pattern:
+
+@inject PublicApaClient PublicAPA
+
+protected override async Task OnInitializedAsync()
+{
+    var layout = await PublicAPA.GetLeagueLayoutAsync("Southside");
+    Divisions = layout.Divisions;
+    Schedule = await PublicAPA.GetScheduleAsync(Divisions.First().Id);
+}
+
+# Summary Rules
+
+- Use HttpClient.
+- Use System.Text.Json.
+- Use https://gql.poolplayers.com/graphql.
+- Use batched GraphQL payloads only.
+- Load queries from .graphql files.
+- PublicApaClient: no auth.
+- ApaClient: requires bearer token.
+- Do not mix public and authenticated queries.
+- Do not add SQL or EF logic to ConnectAPA.

@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+
+
+
+<div class="top-bar-fixed">
+	<div class="top-bar">
+		<a href="/" class="top-bar-logo">
+			<span class="top-bar-logo-icon">
+				<img src="/images/logo.png" />
+			</span>
+			CueConnect757
+		</a>
+		<nav class="top-bar-nav">
+			<a href="/leagues">Leagues</a>
+			<a href="/teams">Teams</a>
+			<a href="/poolhalls">Pool Halls</a>
+			<a href="/live">Live</a>
+			<a href="/videos">Videos</a>
+			<a href="/events">Events</a>
+			<a href="/findplayers">Find Players</a>
+		</nav>
+        <div class="top-bar-actions">
+            <LoginDisplay />
+        </div>
+    </div>
+    <div class="top-bar-rail"></div>
+</div>
+
+@Body
+
+<div class="bottom-bar-fixed">
+	<div class="bottom-bar-rail"></div>
+	<div class="bottom-bar">
+		Created and maintained by Delfraisse.com - All other copyrights respected
+	</div>
+</div>
+
+@code {
+
+}
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

@@ -1,0 +1,14 @@
+﻿query Divisions($slug: String!) {
+  league(slug: $slug) {
+    id
+    divisions {
+      id
+      name
+      session {
+        id
+        name
+        startDate
+      }
+    }
+  }
+}
