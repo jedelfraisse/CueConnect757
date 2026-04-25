@@ -1,0 +1,159 @@
+757 Billiards Community Platform — Conceptual Blueprint
+I'll lay out a comprehensive plan for this platform. This is a discussion/planning document — no code yet.
+
+1. Purpose & Value Proposition
+One-liner: The single, neutral hub where everyone in Hampton Roads finds, follows, and participates in billiards — regardless of league affiliation or skill level.
+
+Core problems solved:
+
+Fragmented league info across APA, BCA, USAPL, and in-house systems
+No central tournament calendar
+No "free agent" board for players or teams
+Parents can't easily discover youth programs
+Pool halls only promote their own events
+2. Platform Name Ideas
+Name	Domain	Notes
+757Pool	757pool.com	Short, geographic, instantly clear
+RackUp757	rackup757.com	Action-oriented, memorable
+Hampton Roads Billiards Hub	hrbilliards.com	Descriptive, professional
+CueConnect 757	cueconnect757.com	Emphasizes community linking
+The Break Room 757	thebreakroom757.com	Playful double meaning
+Branding direction: Dark navy/charcoal base, felt-green accent, clean sans-serif typography (Inter). Professional but approachable — not a bar vibe, not corporate. Think "community sports portal."
+
+3. User Roles
+Role	Can Do
+Player	Browse leagues/halls/tournaments, create profile with skill level, mark "looking for team," RSVP to events
+Team Captain	Everything a Player can do + manage team roster, create schedules, view RSVPs, post "looking for player"
+League Operator	Manage league listing, seasons, divisions, standings; approve teams; publish schedules
+Pool Hall Owner	Manage hall profile (tables, rates, hours, amenities), post tournaments, link leagues hosted at their venue
+Parent	Browse youth programs, RSVP on behalf of child, receive parent-specific notifications
+Admin	Full platform moderation, user management, content approval, analytics
+A single user can hold multiple roles (e.g., a Player who is also a Parent and a Team Captain).
+
+4. Core Feature Modules
+Module A — League Directory
+Filterable list of all leagues (APA, BCA, USAPL, in-house, junior)
+Each league has: name, format (8-ball, 9-ball, 10-ball), affiliation, season dates, divisions, host venues, contact
+League Operators maintain their own listings
+Module B — Team Finder
+Teams post openings with skill-level requirements, league affiliation, practice schedule, home venue
+Players can browse and express interest
+Captain gets notification → accepts/declines
+Module C — Player Finder
+Players mark themselves as "free agent" with skill level, preferred formats, availability
+Captains can browse and invite
+Player gets notification → accepts/declines
+Module D — Tournament Calendar
+Unified calendar across all halls and leagues
+Filterable by format, entry fee, date, location, skill level
+Any Hall Owner or League Operator can post; Admin-approved for quality
+Module E — Youth Programs Hub
+Directory of junior leagues, clinics, scholarship info
+Parent-friendly layout with age ranges, cost, location, schedule
+RSVP system for parents (see Module G)
+Module F — Pool Hall Profiles
+Each hall: name, address (map), tables (count & type), rates, hours, amenities (food, bar, parking), photos
+Linked leagues and upcoming tournaments auto-populated
+Hall Owners self-manage; verified badge after Admin review
+Module G — Team Schedule + RSVP System
+Captains create events: practices, league matches, special events
+Each team member sees schedule and marks Going / Not Going / Unknown
+Captain dashboard: at-a-glance attendance view
+Automated reminders (24h before, customizable)
+Notification preferences per player
+Module H — Youth Schedule + RSVP System
+Same RSVP mechanics as Module G, but Parent is the responder
+Parent can manage multiple children
+Communication tools: announcements, schedule changes, cancellation alerts
+Age-appropriate privacy: no direct messaging between adults and minors
+Module I — Media / Streaming Hub (Phase 1.5)
+Embed links to live streams (YouTube, Facebook, Twitch)
+Multi-table streaming directory (which hall streams, which tables)
+VOD archive by tournament/league
+This can start as a curated link directory and grow into native integration
+5. Recommended Data Model
+Users
+id, email, full_name, role(s), phone, profile_photo
+skill_level (SL for APA, rating for BCA, self-assessed)
+preferred_formats (8-ball, 9-ball, 10-ball, one-pocket, etc.)
+looking_for_team (boolean)
+home_region (city within 757)
+Teams
+id, name, league_id, captain_id (→ User), home_venue_id (→ Pool Hall)
+roster (→ array of User references)
+looking_for_players (boolean), skill_range_needed
+season, division
+Leagues
+id, name, affiliation (APA/BCA/USAPL/in-house/junior)
+format, season_start, season_end
+operator_id (→ User), host_venues (→ array of Pool Hall references)
+divisions (array of objects: name, skill range)
+Pool Halls
+id, name, address, coordinates (for map), phone, website
+hours, table_count, table_types, amenities
+owner_id (→ User), verified (boolean)
+photos (array of URLs)
+Events / Schedules
+id, type (practice, league_match, tournament, clinic, youth_session)
+title, description, date, time, location_id (→ Pool Hall)
+team_id or league_id (contextual)
+created_by (→ User), format, entry_fee, skill_level
+RSVPs
+id, event_id (→ Event), user_id (→ User)
+status (going / not_going / unknown)
+responded_by (self or parent_id for youth)
+responded_at (timestamp)
+Player Skill Levels
+id, user_id (→ User)
+system (APA, BCA, USAPL, self-assessed)
+rating_value, format, last_updated
+Youth Profiles (linked to Parent)
+id, parent_id (→ User), child_name, age, skill_level
+enrolled_programs (→ array of League/Event references)
+6. Key Interaction Flows
+Flow 1 — New Player joins: Sign up → Set skill level & preferred formats → Browse leagues/teams → Mark "looking for team" → Captain invites → Player accepts → Added to roster → Sees team schedule → RSVPs
+
+Flow 2 — Captain fills a roster spot: Captain marks team as "looking for player" → Browses free agents or receives interest → Invites player → Player accepts → Roster updated
+
+Flow 3 — Parent enrolls child: Parent signs up → Creates youth profile → Browses youth programs → RSVPs for session → Receives reminders → Marks Going/Not Going
+
+Flow 4 — Tournament discovery: Any user → Opens tournament calendar → Filters by format, date, location → Views details → Registers (or follows link to external registration)
+
+Flow 5 — Hall Owner promotes venue: Hall Owner signs up → Claims/creates hall profile → Adds tables, rates, hours, photos → Links hosted leagues → Posts tournaments → Profile appears in directory + map
+
+7. Phase 2 — Individual Points-Based League
+This is architected as an add-on module that plugs into the existing data model without restructuring:
+
+Concept
+Season-long "tour" format (e.g., 16-week season)
+Players earn points each week based on match results (wins, opponent strength, match format)
+Leaderboard updates in real-time
+End-of-season rewards (trophies, prizes, hall credits)
+Top N players qualify for end-of-year invitational tournament
+Additional Data Model (Phase 2 only)
+Points Seasons: id, name, start_date, end_date, format, scoring_rules
+Points Entries: id, season_id, user_id, week, points_earned, match_id, opponent_id
+Leaderboard: computed view — user_id, total_points, rank, wins, losses, qualifying_status
+Why it's modular
+Uses existing User and Pool Hall entities
+Events entity already supports match types
+Points Entries is a new standalone table that references existing IDs
+No changes needed to Teams, Leagues, or RSVPs
+Leaderboard is a computed view, not a stored structure
+8. Architecture Principles
+Principle	Approach
+Modular	Each feature is a self-contained module with its own entities and UI
+Role-based access	Users hold multiple roles; permissions are additive
+Neutral	No league affiliation bias — all leagues treated equally
+Mobile-first	Responsive design; RSVP and schedule checking are mobile-primary activities
+Scalable	Phase 2 (points league) and Phase 1.5 (streaming) plug in without rework
+Community-owned	Admin moderation, but Hall Owners and League Operators self-manage their content
+Next Steps
+When you're ready to start building, we can proceed in phases:
+
+Phase 1a: Core entities, hall profiles, league directory, tournament calendar
+Phase 1b: Player/team finder, RSVP system, team schedules
+Phase 1c: Youth hub, parent tools
+Phase 1.5: Media/streaming directory
+Phase 2: Individual points league
+Let me know which phase you'd like to start implementing, or if you want to refine any part of this blueprint first.

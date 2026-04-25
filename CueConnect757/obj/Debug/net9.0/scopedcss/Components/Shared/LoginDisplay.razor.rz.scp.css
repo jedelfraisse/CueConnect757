@@ -1,0 +1,123 @@
+.user-menu-container[b-c49mbyzmug] {
+    position: relative;
+}
+
+.user-avatar[b-c49mbyzmug] {
+    width: 40px;
+    height: 40px;
+    background: #217a5b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    user-select: none;
+    border: none;
+    outline: none;
+}
+
+.user-avatar:hover[b-c49mbyzmug] {
+    background: #1a6249;
+}
+
+.user-avatar:focus[b-c49mbyzmug] {
+    outline: 2px solid #08AFF2;
+    outline-offset: 2px;
+}
+
+.user-dropdown-backdrop[b-c49mbyzmug] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1999;
+    background: transparent;
+}
+
+.user-dropdown[b-c49mbyzmug] {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    background: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 240px;
+    z-index: 2000;
+    overflow: hidden;
+}
+
+.user-dropdown-header[b-c49mbyzmug] {
+    padding: 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.user-dropdown-name[b-c49mbyzmug] {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.user-dropdown-email[b-c49mbyzmug] {
+    font-size: 0.875rem;
+    color: #666;
+    word-break: break-word;
+}
+
+.user-dropdown-item[b-c49mbyzmug] {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: all 0.2s;
+    gap: 10px;
+}
+
+.user-dropdown-item:hover[b-c49mbyzmug] {
+    background: #08AFF2;
+    color: #fff;
+}
+
+.dropdown-icon[b-c49mbyzmug] {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.user-dropdown-divider[b-c49mbyzmug] {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 4px 0;
+}
+
+.btn-login[b-c49mbyzmug] {
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background-color: #217a5b;
+    color: white;
+    border: none;
+    display: inline-block;
+}
+
+.btn-login:hover[b-c49mbyzmug] {
+    background-color: #1a6249;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(33, 122, 91, 0.3);
+}
+

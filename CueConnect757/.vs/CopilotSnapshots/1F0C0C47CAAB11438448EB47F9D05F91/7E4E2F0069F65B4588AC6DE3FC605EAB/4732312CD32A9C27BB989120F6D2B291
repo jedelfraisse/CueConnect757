@@ -1,0 +1,16 @@
+﻿namespace CueConnect757.DataSQL.Entities;
+
+public class Division
+{
+    public int Id { get; set; }
+    public int DivisionIdFromAPA { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string NightOfPlay { get; set; } = string.Empty;
+    public string Format { get; set; } = string.Empty;
+
+    public int SessionId { get; set; }
+    public Session Session { get; set; } = null!;
+
+    public ICollection<Team> Teams { get; set; } = new List<Team>();
+    public ICollection<Match> Matches { get; set; } = new List<Match>();
+}

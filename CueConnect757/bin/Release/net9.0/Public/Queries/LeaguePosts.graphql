@@ -1,0 +1,11 @@
+query LeaguePosts($slug: String!, $limit: Int!, $offset: Int!) {
+  league(slug: $slug) {
+    id
+    slug
+    news(limit: $limit, offset: $offset) {
+      id
+      title
+      createdAt
+    }
+  }
+}

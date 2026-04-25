@@ -1,0 +1,103 @@
+@page "/test-apa-sync"
+@rendermode InteractiveServer
+@using CueConnect757.Services
+@inject ApaSyncService ApaSyncService
+
+<PageTitle>Test APA Sync</PageTitle>
+
+<h3>APA Data Sync Test</h3>
+
+<div class="main-content">
+    <div class="mb-3">
+        <label for="leagueSlug" class="form-label">League Slug:</label>
+        <input type="text" class="form-control" id="leagueSlug" @bind="LeagueSlug" placeholder="southside" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" @onclick="SyncLeagueAsync" disabled="@IsLoading">
+            @if (IsLoading)
+            {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            Sync League Data
+        </button>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong> @ErrorMessage
+        </div>
+    }
+
+    @if (SyncResult is not null)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @if (SyncResult.Success)
+                    {
+                        <span class="text-success">✓ Sync Successful</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">✗ Sync Failed</span>
+                    }
+                </h5>
+                
+                <p>@SyncResult.Message</p>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Sessions Synced
+                        <span class="badge bg-primary rounded-pill">@SyncResult.SessionsSynced</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Divisions Synced
+                        <span class="badge bg-primary rounded-pill">@SyncResult.DivisionsSynced</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Teams Synced
+                        <span class="badge bg-primary rounded-pill">@SyncResult.TeamsSynced</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Matches Synced
+                        <span class="badge bg-primary rounded-pill">@SyncResult.MatchesSynced</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool IsLoading { get; set; }
+    private string ErrorMessage { get; set; } = string.Empty;
+    private string LeagueSlug { get; set; } = "southside";
+    private ApaSyncResult? SyncResult { get; set; }
+
+    private async Task SyncLeagueAsync()
+    {
+        IsLoading = true;
+        ErrorMessage = string.Empty;
+        SyncResult = null;
+
+        try
+        {
+            SyncResult = await ApaSyncService.SyncLeagueAsync(LeagueSlug);
+            
+            if (!SyncResult.Success && !string.IsNullOrWhiteSpace(SyncResult.Message))
+            {
+                ErrorMessage = SyncResult.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

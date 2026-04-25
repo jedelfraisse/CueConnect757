@@ -1,0 +1,64 @@
+﻿@page "/teams"
+
+<PageTitle>Teams - CueConnect757</PageTitle>
+
+<PageHeader Title="Find Teams & Players" Description="Connect with pool teams looking for players or find players to join your roster." />
+
+<div class="main-content">
+    <p class="lead">
+        Post or browse ads for teams looking for players and players looking for teams in Hampton Roads.
+    </p>
+
+    <div class="content-placeholder">
+        <h2>Team & Player Ads</h2>
+        <p>This page will feature:</p>
+        <ul>
+            <li>Post "Team Looking for Players" ads</li>
+            <li>Post "Player Looking for Team" ads</li>
+            <li>Browse available players by skill level and availability</li>
+            <li>Browse teams seeking new members</li>
+            <li>Filter by league type (APA, BCA, USAPL, In-House)</li>
+            <li>Filter by location and night of play</li>
+            <li>Contact information and messaging</li>
+            <li>Ad expiration and renewal</li>
+        </ul>
+        <p class="note">
+            <strong>Note:</strong> For full team rosters and detailed stats, please visit your league's official website. 
+            APA stats are available for members who link their APA account.
+        </p>
+    </div>
+</div>
+
+<style>
+    .lead {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+    }
+
+    .content-placeholder {
+        background: #f8f9fa;
+        border-left: 4px solid #08AFF2;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+
+    .content-placeholder h2 {
+        color: #08AFF2;
+        margin-top: 0;
+    }
+
+    .content-placeholder ul {
+        line-height: 1.8;
+    }
+
+    .content-placeholder .note {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        border-radius: 4px;
+        font-size: 0.95rem;
+    }
+</style>

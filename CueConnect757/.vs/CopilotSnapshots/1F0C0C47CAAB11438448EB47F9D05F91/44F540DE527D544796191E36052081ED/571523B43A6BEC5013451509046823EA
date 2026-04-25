@@ -1,0 +1,13 @@
+﻿namespace CueConnect757.DataSQL.Entities;
+
+public class Player
+{
+    public int Id { get; set; }
+    public int AliasId { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public int SkillLevel { get; set; }
+
+    public ICollection<PlayerSessionStats> SessionStats { get; set; } = new List<PlayerSessionStats>();
+    public ICollection<MembershipHistory> MembershipHistory { get; set; } = new List<MembershipHistory>();
+}

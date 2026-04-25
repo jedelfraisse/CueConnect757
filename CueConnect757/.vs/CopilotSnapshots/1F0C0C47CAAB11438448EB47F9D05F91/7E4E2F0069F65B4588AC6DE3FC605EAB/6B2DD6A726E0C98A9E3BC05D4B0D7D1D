@@ -1,0 +1,7 @@
+﻿@page "/test-apa-private"
+
+<h3>TestAPAPrivate</h3>
+
+@code {
+
+}

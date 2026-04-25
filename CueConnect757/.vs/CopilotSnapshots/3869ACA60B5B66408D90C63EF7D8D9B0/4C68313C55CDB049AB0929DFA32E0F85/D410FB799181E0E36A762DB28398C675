@@ -1,0 +1,280 @@
+﻿@page "/test-apa"
+@rendermode InteractiveServer
+@using System.Text.Json
+@using ConnectAPA.GraphQL
+@inject ApaGraphQlClient ApaClient
+
+<PageTitle>APA Connection Tests</PageTitle>
+
+<h3>APA Connection Tests</h3>
+
+<div class="main-content">
+    <p>Run the APA queries in order. Each step uses the data returned by the previous step.</p>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <label class="form-label">League Id</label>
+            <input class="form-control" type="number" @bind="LeagueId" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Division Id</label>
+            <input class="form-control" type="number" @bind="SelectedDivisionId" />
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Team Id</label>
+            <input class="form-control" type="number" @bind="SelectedTeamId" />
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 mb-3">
+        <button class="btn btn-primary" @onclick="TestLeagueDivisionsAsync" disabled="@IsBusy">1. Test leagueDivisions</button>
+        <button class="btn btn-outline-primary" @onclick="TestDivisionTeamsAsync" disabled="@(!CanTestDivisionTeams)">2. Test divisionTeams</button>
+        <button class="btn btn-outline-primary" @onclick="TestTeamRosterAsync" disabled="@(!CanTestTeamRoster)">3. Test teamRoster</button>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(StatusMessage))
+    {
+        <div class="alert @(HasError ? "alert-danger" : "alert-info")" role="alert">
+            @StatusMessage
+        </div>
+    }
+
+    <div class="row g-3">
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">leagueDivisions</h5>
+                    @if (LeagueDivisions.Count == 0)
+                    {
+                        <p class="text-muted mb-0">No division data loaded yet.</p>
+                    }
+                    else
+                    {
+                        <ul class="mb-0">
+                            @foreach (var division in LeagueDivisions)
+                            {
+                                <li>@division.name (@division.divisionId)</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">divisionTeams</h5>
+                    @if (DivisionTeams.Count == 0)
+                    {
+                        <p class="text-muted mb-0">No team data loaded yet.</p>
+                    }
+                    else
+                    {
+                        <ul class="mb-0">
+                            @foreach (var team in DivisionTeams)
+                            {
+                                <li>@team.name (@team.teamId)</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">teamRoster</h5>
+                    @if (TeamRoster.Count == 0)
+                    {
+                        <p class="text-muted mb-0">No roster data loaded yet.</p>
+                    }
+                    else
+                    {
+                        <ul class="mb-0">
+                            @foreach (var player in TeamRoster)
+                            {
+                                <li>@player.firstName @player.lastName (@player.aliasId)</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(LastResponseJson))
+    {
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Last Response</h5>
+                <pre class="mb-0">@LastResponseJson</pre>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
+
+    private int LeagueId { get; set; } = 757;
+    private int SelectedDivisionId { get; set; }
+    private int SelectedTeamId { get; set; }
+
+    private bool IsBusy { get; set; }
+    private bool HasError { get; set; }
+    private string StatusMessage { get; set; } = string.Empty;
+    private string LastResponseJson { get; set; } = string.Empty;
+
+    private List<LeagueDivisionDto> LeagueDivisions { get; set; } = [];
+    private List<DivisionTeamDto> DivisionTeams { get; set; } = [];
+    private List<TeamRosterPlayerDto> TeamRoster { get; set; } = [];
+
+    private bool CanTestDivisionTeams => !IsBusy && SelectedDivisionId > 0;
+    private bool CanTestTeamRoster => !IsBusy && SelectedTeamId > 0;
+
+    private async Task TestLeagueDivisionsAsync()
+    {
+        IsBusy = true;
+        HasError = false;
+        StatusMessage = "Running leagueDivisions...";
+        DivisionTeams = [];
+        TeamRoster = [];
+        SelectedDivisionId = 0;
+        SelectedTeamId = 0;
+        LastResponseJson = string.Empty;
+
+        try
+        {
+            const string query = @"query LeagueDivisions($leagueId: Int!) {
+  leagueDivisions(leagueId: $leagueId) {
+    divisionId
+    name
+  }
+}";
+
+            var response = await ApaClient.SendAsync<LeagueDivisionsResponse>(query, new { leagueId = LeagueId });
+            LeagueDivisions = response.leagueDivisions ?? [];
+            SelectedDivisionId = LeagueDivisions.FirstOrDefault()?.divisionId ?? 0;
+            LastResponseJson = JsonSerializer.Serialize(response, JsonOptions);
+            StatusMessage = $"leagueDivisions completed. Found {LeagueDivisions.Count} divisions.";
+        }
+        catch (Exception ex)
+        {
+            HasError = true;
+            LeagueDivisions = [];
+            StatusMessage = $"leagueDivisions failed: {ex.Message}";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    private async Task TestDivisionTeamsAsync()
+    {
+        IsBusy = true;
+        HasError = false;
+        StatusMessage = "Running divisionTeams...";
+        TeamRoster = [];
+        SelectedTeamId = 0;
+        LastResponseJson = string.Empty;
+
+        try
+        {
+            const string query = @"query DivisionTeams($divisionId: Int!) {
+  divisionTeams(divisionId: $divisionId) {
+    teamId
+    name
+  }
+}";
+
+            var response = await ApaClient.SendAsync<DivisionTeamsResponse>(query, new { divisionId = SelectedDivisionId });
+            DivisionTeams = response.divisionTeams ?? [];
+            SelectedTeamId = DivisionTeams.FirstOrDefault()?.teamId ?? 0;
+            LastResponseJson = JsonSerializer.Serialize(response, JsonOptions);
+            StatusMessage = $"divisionTeams completed. Found {DivisionTeams.Count} teams.";
+        }
+        catch (Exception ex)
+        {
+            HasError = true;
+            DivisionTeams = [];
+            StatusMessage = $"divisionTeams failed: {ex.Message}";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    private async Task TestTeamRosterAsync()
+    {
+        IsBusy = true;
+        HasError = false;
+        StatusMessage = "Running teamRoster...";
+        LastResponseJson = string.Empty;
+
+        try
+        {
+            const string query = @"query TeamRoster($teamId: Int!) {
+  teamRoster(teamId: $teamId) {
+    aliasId
+    firstName
+    lastName
+    skillLevel
+  }
+}";
+
+            var response = await ApaClient.SendAsync<TeamRosterResponse>(query, new { teamId = SelectedTeamId });
+            TeamRoster = response.teamRoster ?? [];
+            LastResponseJson = JsonSerializer.Serialize(response, JsonOptions);
+            StatusMessage = $"teamRoster completed. Found {TeamRoster.Count} players.";
+        }
+        catch (Exception ex)
+        {
+            HasError = true;
+            TeamRoster = [];
+            StatusMessage = $"teamRoster failed: {ex.Message}";
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    private sealed class LeagueDivisionsResponse
+    {
+        public List<LeagueDivisionDto>? leagueDivisions { get; set; }
+    }
+
+    private sealed class DivisionTeamsResponse
+    {
+        public List<DivisionTeamDto>? divisionTeams { get; set; }
+    }
+
+    private sealed class TeamRosterResponse
+    {
+        public List<TeamRosterPlayerDto>? teamRoster { get; set; }
+    }
+
+    private sealed class LeagueDivisionDto
+    {
+        public int divisionId { get; set; }
+        public string? name { get; set; }
+    }
+
+    private sealed class DivisionTeamDto
+    {
+        public int teamId { get; set; }
+        public string? name { get; set; }
+    }
+
+    private sealed class TeamRosterPlayerDto
+    {
+        public int aliasId { get; set; }
+        public string? firstName { get; set; }
+        public string? lastName { get; set; }
+        public int skillLevel { get; set; }
+    }
+}

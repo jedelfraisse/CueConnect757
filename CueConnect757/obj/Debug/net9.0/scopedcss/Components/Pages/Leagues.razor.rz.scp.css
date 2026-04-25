@@ -1,0 +1,125 @@
+.sessions-container[b-dbxayuppqq] {
+    margin-top: 2rem;
+}
+
+.session-card[b-dbxayuppqq] {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.session-card:hover[b-dbxayuppqq] {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.session-header[b-dbxayuppqq] {
+    background: linear-gradient(135deg, #08AFF2 0%, #0694D1 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.session-header h3[b-dbxayuppqq] {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.session-dates[b-dbxayuppqq] {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+.divisions-grid[b-dbxayuppqq] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.division-card[b-dbxayuppqq] {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.division-card:hover[b-dbxayuppqq] {
+    background: white;
+    border-color: #08AFF2;
+    box-shadow: 0 2px 12px rgba(8, 175, 242, 0.1);
+    transform: translateY(-2px);
+}
+
+.division-header[b-dbxayuppqq] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.division-header h4[b-dbxayuppqq] {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.division-info[b-dbxayuppqq] {
+    margin-bottom: 0.5rem;
+}
+
+.division-info i[b-dbxayuppqq] {
+    margin-right: 0.25rem;
+}
+
+.teams-list[b-dbxayuppqq] {
+    border-top: 1px solid #dee2e6;
+    padding-top: 1rem;
+}
+
+.teams-list h6[b-dbxayuppqq] {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+}
+
+.teams-list ul li[b-dbxayuppqq] {
+    padding: 0.35rem 0;
+    font-size: 0.95rem;
+    color: #495057;
+}
+
+.teams-list ul li i[b-dbxayuppqq] {
+    color: #08AFF2;
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .session-header[b-dbxayuppqq] {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .divisions-grid[b-dbxayuppqq] {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .division-header[b-dbxayuppqq] {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

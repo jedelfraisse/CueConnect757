@@ -1,0 +1,14 @@
+C:\Work\CueConnect757\CueConnect757.DataSQL\bin\Debug\net8.0\CueConnect757.DataSQL.deps.json
+C:\Work\CueConnect757\CueConnect757.DataSQL\bin\Debug\net8.0\CueConnect757.DataSQL.runtimeconfig.json
+C:\Work\CueConnect757\CueConnect757.DataSQL\bin\Debug\net8.0\CueConnect757.DataSQL.dll
+C:\Work\CueConnect757\CueConnect757.DataSQL\bin\Debug\net8.0\CueConnect757.DataSQL.pdb
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.csproj.AssemblyReference.cache
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.AssemblyInfoInputs.cache
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.AssemblyInfo.cs
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.csproj.CoreCompileInputs.cache
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.dll
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\refint\CueConnect757.DataSQL.dll
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.pdb
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\CueConnect757.DataSQL.genruntimeconfig.cache
+C:\Work\CueConnect757\CueConnect757.DataSQL\obj\Debug\net8.0\ref\CueConnect757.DataSQL.dll

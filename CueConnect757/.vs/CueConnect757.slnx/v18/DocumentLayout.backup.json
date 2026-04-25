@@ -1,0 +1,870 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Work\\CueConnect757\\CueConnect757\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\testapapublic.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\testapapublic.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\testapaprivate.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\testapaprivate.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\profile_quick_start.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:profile_quick_start.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\user_profile_implementation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:user_profile_implementation.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\linkedaccounts.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\linkedaccounts.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\profile.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\services\\apalinkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:services\\apalinkingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\services\\userprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:services\\userprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\cueconnectdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\entities\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\navigation_pages.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:navigation_pages.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\teams.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\teams.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\events.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\events.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\videos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\videos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\findplayers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\findplayers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\poolhalls.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\poolhalls.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\live.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\live.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\leagues.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\leagues.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\layout_updates.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:layout_updates.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\implementation_summary.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:implementation_summary.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\quick_setup.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:quick_setup.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\shared\\logindisplay.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\shared\\logindisplay.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\authentication_setup.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:authentication_setup.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\protected.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\protected.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\services\\userinfoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:services\\userinfoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\account.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\account.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\shared\\logindisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\shared\\logindisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60BEDEF9-E60A-128D-E507-849712991BB0}|..\\ConnectAPA\\ConnectAPA.csproj|c:\\work\\cueconnect757\\connectapa\\graphql\\queries\\viewerquery.graphql||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60BEDEF9-E60A-128D-E507-849712991BB0}|..\\ConnectAPA\\ConnectAPA.csproj|c:\\work\\cueconnect757\\connectapa\\models\\alias\\viewermodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:.github\\copilot-instructions.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\entities\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\entities\\division.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\entities\\team.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\entities\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F657B46-9635-6122-9145-DC54BFC25F13}|..\\CueConnect757.DataSQL\\CueConnect757.DataSQL.csproj|c:\\work\\cueconnect757\\cueconnect757.datasql\\entities\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\services\\apasyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:services\\apasyncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\testapasync.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\testapasync.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60BEDEF9-E60A-128D-E507-849712991BB0}|..\\ConnectAPA\\ConnectAPA.csproj|c:\\work\\cueconnect757\\connectapa\\public\\queries\\leaguelayout.graphql||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60BEDEF9-E60A-128D-E507-849712991BB0}|..\\ConnectAPA\\ConnectAPA.csproj|c:\\work\\cueconnect757\\connectapa\\public\\queries\\divisions.graphql||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60BEDEF9-E60A-128D-E507-849712991BB0}|..\\ConnectAPA\\ConnectAPA.csproj|c:\\work\\cueconnect757\\connectapa\\models\\public\\publicmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|c:\\work\\cueconnect757\\cueconnect757\\components\\pages\\leagues.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6C048503-8E41-936A-BC60-914213AC4DE7}|CueConnect757.csproj|solutionrelative:components\\pages\\leagues.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 240,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 35,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Leagues.razor.css",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Leagues.razor.css",
+              "RelativeDocumentMoniker": "Components\\Pages\\Leagues.razor.css",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Leagues.razor.css",
+              "RelativeToolTip": "Components\\Pages\\Leagues.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-08T03:35:38.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "PublicModels.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\ConnectAPA\\Models\\Public\\PublicModels.cs",
+              "RelativeDocumentMoniker": "..\\ConnectAPA\\Models\\Public\\PublicModels.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\ConnectAPA\\Models\\Public\\PublicModels.cs",
+              "RelativeToolTip": "..\\ConnectAPA\\Models\\Public\\PublicModels.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAABQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T03:00:36.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "Divisions.graphql",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\ConnectAPA\\Public\\Queries\\Divisions.graphql",
+              "RelativeDocumentMoniker": "..\\ConnectAPA\\Public\\Queries\\Divisions.graphql",
+              "ToolTip": "C:\\Work\\CueConnect757\\ConnectAPA\\Public\\Queries\\Divisions.graphql",
+              "RelativeToolTip": "..\\ConnectAPA\\Public\\Queries\\Divisions.graphql",
+              "ViewState": "AgIAAAkAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-08T03:00:30.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "LeagueLayout.graphql",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\ConnectAPA\\Public\\Queries\\LeagueLayout.graphql",
+              "RelativeDocumentMoniker": "..\\ConnectAPA\\Public\\Queries\\LeagueLayout.graphql",
+              "ToolTip": "C:\\Work\\CueConnect757\\ConnectAPA\\Public\\Queries\\LeagueLayout.graphql",
+              "RelativeToolTip": "..\\ConnectAPA\\Public\\Queries\\LeagueLayout.graphql",
+              "ViewState": "AgIAAAsAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-08T02:54:26.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "TestAPASync.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\TestAPASync.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\TestAPASync.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\TestAPASync.razor",
+              "RelativeToolTip": "Components\\Pages\\TestAPASync.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-08T02:44:09.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ApaSyncService.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\ApaSyncService.cs",
+              "RelativeDocumentMoniker": "Services\\ApaSyncService.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\ApaSyncService.cs",
+              "RelativeToolTip": "Services\\ApaSyncService.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAABRwFwBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T02:43:33.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Player.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\Entities\\Player.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Player.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\Entities\\Player.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAIBHwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T01:52:32.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Match.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Match.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\Entities\\Match.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Match.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\Entities\\Match.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAIBHwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T01:52:31.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Team.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Team.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\Entities\\Team.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Team.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\Entities\\Team.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAIBHwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T01:52:30.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Division.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Division.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\Entities\\Division.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Division.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\Entities\\Division.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBHwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T01:52:29.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Session.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Session.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\Entities\\Session.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\Session.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\Entities\\Session.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAIBHwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T01:52:29.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "copilot-instructions.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\.github\\copilot-instructions.md",
+              "RelativeDocumentMoniker": ".github\\copilot-instructions.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\.github\\copilot-instructions.md",
+              "RelativeToolTip": ".github\\copilot-instructions.md",
+              "ViewState": "AgIAABQAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-04-08T01:35:40.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ViewerModels.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\ConnectAPA\\Models\\Alias\\ViewerModels.cs",
+              "RelativeDocumentMoniker": "..\\ConnectAPA\\Models\\Alias\\ViewerModels.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\ConnectAPA\\Models\\Alias\\ViewerModels.cs",
+              "RelativeToolTip": "..\\ConnectAPA\\Models\\Alias\\ViewerModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T01:28:48.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ViewerQuery.graphql",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\ConnectAPA\\GraphQL\\Queries\\ViewerQuery.graphql",
+              "RelativeDocumentMoniker": "..\\ConnectAPA\\GraphQL\\Queries\\ViewerQuery.graphql",
+              "ToolTip": "C:\\Work\\CueConnect757\\ConnectAPA\\GraphQL\\Queries\\ViewerQuery.graphql",
+              "RelativeToolTip": "..\\ConnectAPA\\GraphQL\\Queries\\ViewerQuery.graphql",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-08T01:15:21.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TestAPAPrivate.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\TestAPAPrivate.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\TestAPAPrivate.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\TestAPAPrivate.razor",
+              "RelativeToolTip": "Components\\Pages\\TestAPAPrivate.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T13:48:45.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PROFILE_QUICK_START.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\PROFILE_QUICK_START.md",
+              "RelativeDocumentMoniker": "PROFILE_QUICK_START.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\PROFILE_QUICK_START.md",
+              "RelativeToolTip": "PROFILE_QUICK_START.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAK0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T15:08:17.617Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "USER_PROFILE_IMPLEMENTATION.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\USER_PROFILE_IMPLEMENTATION.md",
+              "RelativeDocumentMoniker": "USER_PROFILE_IMPLEMENTATION.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\USER_PROFILE_IMPLEMENTATION.md",
+              "RelativeToolTip": "USER_PROFILE_IMPLEMENTATION.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T15:07:57.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LinkedAccounts.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\LinkedAccounts.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\LinkedAccounts.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\LinkedAccounts.razor",
+              "RelativeToolTip": "Components\\Pages\\LinkedAccounts.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T15:02:21.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Profile.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Profile.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Profile.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Profile.razor",
+              "RelativeToolTip": "Components\\Pages\\Profile.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T15:01:41.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ApaLinkingService.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\ApaLinkingService.cs",
+              "RelativeDocumentMoniker": "Services\\ApaLinkingService.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\ApaLinkingService.cs",
+              "RelativeToolTip": "Services\\ApaLinkingService.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAABBwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T15:00:18.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserProfileService.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\UserProfileService.cs",
+              "RelativeDocumentMoniker": "Services\\UserProfileService.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\UserProfileService.cs",
+              "RelativeToolTip": "Services\\UserProfileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T14:59:52.455Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CueConnectDbContext.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\CueConnectDbContext.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\CueConnectDbContext.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\CueConnectDbContext.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\CueConnectDbContext.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAABOwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T14:59:16.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserProfile.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\UserProfile.cs",
+              "RelativeDocumentMoniker": "..\\CueConnect757.DataSQL\\Entities\\UserProfile.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757.DataSQL\\Entities\\UserProfile.cs",
+              "RelativeToolTip": "..\\CueConnect757.DataSQL\\Entities\\UserProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T14:59:05.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "NAVIGATION_PAGES.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\NAVIGATION_PAGES.md",
+              "RelativeDocumentMoniker": "NAVIGATION_PAGES.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\NAVIGATION_PAGES.md",
+              "RelativeToolTip": "NAVIGATION_PAGES.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T14:35:18.926Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Teams.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Teams.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Teams.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Teams.razor",
+              "RelativeToolTip": "Components\\Pages\\Teams.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:44.084Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Events.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Events.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Events.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Events.razor",
+              "RelativeToolTip": "Components\\Pages\\Events.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:43.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Videos.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Videos.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Videos.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Videos.razor",
+              "RelativeToolTip": "Components\\Pages\\Videos.razor",
+              "ViewState": "AgIAAAQAAAAAAAAAAIBJwDMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:43.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FindPlayers.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\FindPlayers.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\FindPlayers.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\FindPlayers.razor",
+              "RelativeToolTip": "Components\\Pages\\FindPlayers.razor",
+              "ViewState": "AgIAAAcAAAAAAAAAAIBJwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:43.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PoolHalls.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\PoolHalls.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\PoolHalls.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\PoolHalls.razor",
+              "RelativeToolTip": "Components\\Pages\\PoolHalls.razor",
+              "ViewState": "AgIAAAQAAAAAAAAAAIBJwDMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:43.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Live.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Live.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Live.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Live.razor",
+              "RelativeToolTip": "Components\\Pages\\Live.razor",
+              "ViewState": "AgIAAAQAAAAAAAAAAIBJwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:43.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Leagues.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Leagues.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Leagues.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Leagues.razor",
+              "RelativeToolTip": "Components\\Pages\\Leagues.razor",
+              "ViewState": "AgIAAPIAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:33:37.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LAYOUT_UPDATES.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\LAYOUT_UPDATES.md",
+              "RelativeDocumentMoniker": "LAYOUT_UPDATES.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\LAYOUT_UPDATES.md",
+              "RelativeToolTip": "LAYOUT_UPDATES.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T14:30:06.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestAPAPublic.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\TestAPAPublic.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\TestAPAPublic.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\TestAPAPublic.razor",
+              "RelativeToolTip": "Components\\Pages\\TestAPAPublic.razor",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:29:20.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\App.razor",
+              "RelativeDocumentMoniker": "Components\\App.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\App.razor",
+              "RelativeToolTip": "Components\\App.razor",
+              "ViewState": "AgIAABEAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:28:09.847Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-03-22T14:27:45.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "wwwroot\\app.css",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\wwwroot\\app.css",
+              "RelativeToolTip": "wwwroot\\app.css",
+              "ViewState": "AgIAACgAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-22T14:27:27.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Dashboard.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Dashboard.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Dashboard.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Dashboard.razor",
+              "RelativeToolTip": "Components\\Pages\\Dashboard.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:27:12.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T14:23:36.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IMPLEMENTATION_SUMMARY.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\IMPLEMENTATION_SUMMARY.md",
+              "RelativeDocumentMoniker": "IMPLEMENTATION_SUMMARY.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\IMPLEMENTATION_SUMMARY.md",
+              "RelativeToolTip": "IMPLEMENTATION_SUMMARY.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T03:18:30.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "QUICK_SETUP.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\QUICK_SETUP.md",
+              "RelativeDocumentMoniker": "QUICK_SETUP.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\QUICK_SETUP.md",
+              "RelativeToolTip": "QUICK_SETUP.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T03:18:03.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "LoginDisplay.razor.css",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Shared\\LoginDisplay.razor.css",
+              "RelativeDocumentMoniker": "Components\\Shared\\LoginDisplay.razor.css",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Shared\\LoginDisplay.razor.css",
+              "RelativeToolTip": "Components\\Shared\\LoginDisplay.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAABBwHsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-22T03:17:36.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "Components\\Routes.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Routes.razor",
+              "RelativeToolTip": "Components\\Routes.razor",
+              "ViewState": "AgIAABMAAAAAAAAAAIBJwBUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T03:14:45.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "AUTHENTICATION_SETUP.md",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\AUTHENTICATION_SETUP.md",
+              "RelativeDocumentMoniker": "AUTHENTICATION_SETUP.md",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\AUTHENTICATION_SETUP.md",
+              "RelativeToolTip": "AUTHENTICATION_SETUP.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-03-22T03:07:12.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Protected.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Protected.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Protected.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Protected.razor",
+              "RelativeToolTip": "Components\\Pages\\Protected.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T03:06:47.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "UserInfoService.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\UserInfoService.cs",
+              "RelativeDocumentMoniker": "Services\\UserInfoService.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Services\\UserInfoService.cs",
+              "RelativeToolTip": "Services\\UserInfoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T03:06:19.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T03:06:07.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "Components\\_Imports.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\_Imports.razor",
+              "RelativeToolTip": "Components\\_Imports.razor",
+              "ViewState": "AgIAAAoAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T03:05:58.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Account.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Account.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Account.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Pages\\Account.razor",
+              "RelativeToolTip": "Components\\Pages\\Account.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T03:05:53.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "LoginDisplay.razor",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Shared\\LoginDisplay.razor",
+              "RelativeDocumentMoniker": "Components\\Shared\\LoginDisplay.razor",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Components\\Shared\\LoginDisplay.razor",
+              "RelativeToolTip": "Components\\Shared\\LoginDisplay.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-22T03:05:41.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-22T03:04:54.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-22T03:04:46.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Work\\CueConnect757\\CueConnect757\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Work\\CueConnect757\\CueConnect757\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAABBwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T03:03:59.438Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

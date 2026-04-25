@@ -1,0 +1,51 @@
+﻿@page "/poolhalls"
+
+<PageTitle>Pool Halls - CueConnect757</PageTitle>
+
+<PageHeader Title="Pool Halls in Hampton Roads" Description="Explore pool halls and billiards rooms across the 757/948 area." />
+
+<div class="main-content">
+    <p class="lead">
+        Find details on tables, rates, hours, amenities, and special events.
+    </p>
+
+    <div class="content-placeholder">
+        <h2>Pool Hall Directory</h2>
+        <p>This page will feature:</p>
+        <ul>
+            <li>Complete list of pool halls in Hampton Roads</li>
+            <li>Number and type of tables (Brunswick, Diamond, etc.)</li>
+            <li>Hours of operation</li>
+            <li>Table rates and specials</li>
+            <li>Amenities (food, bar, pro shop)</li>
+            <li>Leagues hosted at each location</li>
+            <li>Map view to find halls near you</li>
+            <li>Reviews and ratings</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .lead {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+    }
+
+    .content-placeholder {
+        background: #f8f9fa;
+        border-left: 4px solid #08AFF2;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+
+    .content-placeholder h2 {
+        color: #08AFF2;
+        margin-top: 0;
+    }
+
+    .content-placeholder ul {
+        line-height: 1.8;
+    }
+</style>

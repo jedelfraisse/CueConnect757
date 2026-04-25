@@ -1,0 +1,123 @@
+﻿# Copilot Instructions
+
+# ConnectAPA – Copilot Instructions
+These instructions guide GitHub Copilot when generating code for the ConnectAPA library.  
+ConnectAPA is responsible ONLY for communicating with the APA GraphQL API at:
+
+**https://gql.poolplayers.com/graphql**
+
+Do NOT generate SQL, EF Core, or CueConnect logic in this project.
+
+---
+
+## 📌 Core Requirements
+- Use **HttpClient** to send GraphQL requests to:  
+  `https://gql.poolplayers.com/graphql`
+- APA requires **batched GraphQL requests**, even for single operations.
+- All requests must include the Authorization header:  
+  `Authorization: Bearer {token}`
+- Queries must be stored in `.graphql` files under `GraphQL/Queries/`.
+- Do NOT attempt schema introspection (APA blocks it).
+- Use **raw GraphQL strings** loaded from the `.graphql` files.
+- Use **System.Text.Json** for serialization instead of Newtonsoft/GraphQL.Client abstractions.
+
+---
+
+## 📌 Project Structure (Copilot should follow this)
+
+ConnectAPA/  
+- ApaClient.cs  
+- GraphQL/  
+  - GraphQlRequest.cs  
+  - GraphQlResponse.cs  
+  - Queries/  
+    - ViewerQuery.graphql  
+    - LeagueQuery.graphql  
+    - DivisionRosters.graphql  
+    - DivisionMatches.graphql  
+    - AliasSessionStats.graphql  
+    - GetEightBallStats.graphql  
+    - GetMembershipHistory.graphql  
+- Models/  
+  - Viewer/  
+  - League/  
+  - Division/  
+  - Team/  
+  - Player/  
+  - Stats/
+
+---
+
+## 📌 GraphQL Request Format
+APA requires an **array** of operations:
+[
+  {
+    "operationName": "ViewerQuery",
+    "variables": {},
+    "query": "query ViewerQuery { viewer { id __typename ... } }"
+  }
+]
+Copilot should always generate this format.
+
+### GraphQlRequest.cs
+```csharp
+public class GraphQlRequest
+{
+    public string OperationName { get; set; }
+    public string Query { get; set; }
+    public object Variables { get; set; }
+}
+```
+
+### GraphQlResponse.cs
+```csharp
+public class GraphQlResponse<T>
+{
+    public T Data { get; set; }
+    public GraphQlError[] Errors { get; set; }
+}
+```
+
+### 📌 ApaClient.cs Requirements
+Copilot should generate an APA client with:
+```csharp
+public class ApaClient
+{
+    private readonly HttpClient _http;
+
+    public string AccessToken { get; set; }
+
+    public ApaClient(HttpClient http)
+    {
+        _http = http;
+    }
+
+    public Task<T> SendAsync<T>(string query, object variables);
+    public Task<T[]> SendBatchAsync<T>(IEnumerable<GraphQlRequest> requests);
+}
+```
+
+### Behavior Rules
+- Always attach the Authorization header.
+- Always send an array of GraphQlRequest.
+- Always deserialize into GraphQlResponse<T>[].
+
+### 📌 Starter Query (Viewer)
+Copilot should use this as the default test query:
+```
+query ViewerQuery {
+  viewer {
+    id
+    __typename
+    ... on Member {
+      firstName
+      lastName
+      emailAddress
+      leagues(current: true) {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

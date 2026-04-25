@@ -1,0 +1,15 @@
+﻿query LeagueLayout($slug: String!) {
+  league(slug: $slug) {
+    id
+    name
+    slug
+    divisions {
+      id
+      name
+      session {
+        id
+        name
+      }
+    }
+  }
+}

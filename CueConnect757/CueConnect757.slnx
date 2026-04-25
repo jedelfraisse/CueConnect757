@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../ConnectAPA/ConnectAPA.csproj" />
+  <Project Path="../ConnectBCA/ConnectBCA.csproj" />
+  <Project Path="../CueConnect757.Core/CueConnect757.Core.csproj" />
+  <Project Path="../CueConnect757.DataSQL/CueConnect757.DataSQL.csproj" />
+  <Project Path="CueConnect757.csproj" />
+</Solution>

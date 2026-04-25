@@ -1,0 +1,102 @@
+﻿using System.Text.Json.Serialization;
+
+namespace ConnectAPA.Models.Public;
+
+public sealed class League
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("slug")]
+    public string Slug { get; set; } = string.Empty;
+
+    [JsonPropertyName("divisions")]
+    public List<Division> Divisions { get; set; } = [];
+
+    [JsonPropertyName("operators")]
+    public List<Operator> Operators { get; set; } = [];
+
+    [JsonPropertyName("news")]
+    public List<LeaguePost> News { get; set; } = [];
+}
+
+public sealed class Division
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("session")]
+    public Session? Session { get; set; }
+
+    [JsonPropertyName("teams")]
+    public List<Team> Teams { get; set; } = [];
+
+    [JsonPropertyName("matches")]
+    public List<Match> Matches { get; set; } = [];
+}
+
+public sealed class Session
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("startDate")]
+    public DateTime? StartDate { get; set; }
+
+    [JsonPropertyName("endDate")]
+    public DateTime? EndDate { get; set; }
+}
+
+public sealed class Team
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+}
+
+public sealed class Match
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("date")]
+    public DateTime? Date { get; set; }
+
+    [JsonPropertyName("homeTeam")]
+    public Team? HomeTeam { get; set; }
+
+    [JsonPropertyName("awayTeam")]
+    public Team? AwayTeam { get; set; }
+}
+
+public sealed class LeaguePost
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("title")]
+    public string Title { get; set; } = string.Empty;
+
+    [JsonPropertyName("createdAt")]
+    public DateTime? CreatedAt { get; set; }
+}
+
+public sealed class Operator
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+}

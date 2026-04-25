@@ -1,0 +1,76 @@
+﻿@page "/test-apa-public"
+@rendermode InteractiveServer
+@using ConnectAPA.Public
+@using ConnectAPA.Models.Public
+@inject PublicApaClient PublicAPA
+
+<PageTitle>Test APA Public API</PageTitle>
+
+<h3>APA Public API Test</h3>
+
+<div class="main-content">
+    <div class="mb-3">
+        <button class="btn btn-primary" @onclick="LoadDivisionsAsync" disabled="@IsLoading">
+            @if (IsLoading)
+            {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            Load Divisions
+        </button>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong> @ErrorMessage
+        </div>
+    }
+
+    @if (Divisions.Count > 0)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Divisions (@Divisions.Count)</h5>
+                <ul>
+                    @foreach (var division in Divisions)
+                    {
+                        <li>
+                            <strong>@division.Name</strong> (ID: @division.Id)
+                            @if (division.Session is not null)
+                            {
+                                <br />
+                                <small class="text-muted">Session: @division.Session.Name</small>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool IsLoading { get; set; }
+    private string ErrorMessage { get; set; } = string.Empty;
+    private List<Division> Divisions { get; set; } = [];
+
+    private async Task LoadDivisionsAsync()
+    {
+        IsLoading = true;
+        ErrorMessage = string.Empty;
+        Divisions = [];
+
+        try
+        {
+            Divisions = await PublicAPA.GetDivisionsAsync("southside");
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

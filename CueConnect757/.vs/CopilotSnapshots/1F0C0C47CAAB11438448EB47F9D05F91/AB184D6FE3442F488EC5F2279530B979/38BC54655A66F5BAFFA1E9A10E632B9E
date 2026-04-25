@@ -1,0 +1,348 @@
+﻿using ConnectAPA.Public;
+using CueConnect757.DataSQL;
+using Microsoft.EntityFrameworkCore;
+using ApaModels = ConnectAPA.Models.Public;
+using DbEntities = CueConnect757.DataSQL.Entities;
+
+namespace CueConnect757.Services;
+
+public class ApaSyncService
+{
+    private readonly PublicApaClient _publicApa;
+    private readonly CueConnectDbContext _db;
+
+    public ApaSyncService(PublicApaClient publicApa, CueConnectDbContext db)
+    {
+        _publicApa = publicApa;
+        _db = db;
+    }
+
+    /// <summary>
+    /// Syncs league layout including divisions, sessions, teams, and schedule.
+    /// </summary>
+    public async Task<ApaSyncResult> SyncLeagueAsync(string slug, bool forceRefresh = false)
+    {
+        var result = new ApaSyncResult();
+
+        try
+        {
+            // Fetch league layout from APA
+            var apaLeague = await _publicApa.GetLeagueLayoutAsync(slug);
+
+            // Process each division
+            foreach (var apaDivision in apaLeague.Divisions)
+            {
+                // Sync session first
+                var session = await UpsertSessionAsync(apaDivision.Session);
+                if (session is not null)
+                {
+                    result.SessionsSynced++;
+
+                    // Sync division
+                    var division = await UpsertDivisionAsync(apaDivision, session.Id);
+                    if (division is not null)
+                    {
+                        result.DivisionsSynced++;
+
+                        // Sync teams for this division
+                        var teamsResult = await SyncTeamsForDivisionAsync(apaDivision.Id, division.Id);
+                        result.TeamsSynced += teamsResult.TeamsSynced;
+
+                        // Sync schedule for this division
+                        var scheduleResult = await SyncScheduleForDivisionAsync(apaDivision.Id, division.Id);
+                        result.MatchesSynced += scheduleResult.MatchesSynced;
+                    }
+                }
+            }
+
+            result.Success = true;
+            result.Message = $"Successfully synced league '{slug}'.";
+        }
+        catch (Exception ex)
+        {
+            result.Success = false;
+            result.Message = $"Failed to sync league: {ex.Message}";
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Syncs teams for a specific division.
+    /// </summary>
+    private async Task<ApaSyncResult> SyncTeamsForDivisionAsync(int apaDivisionId, int dbDivisionId)
+    {
+        var result = new ApaSyncResult();
+
+        try
+        {
+            var apaTeams = await _publicApa.GetTeamsAsync(apaDivisionId);
+
+            foreach (var apaTeam in apaTeams)
+            {
+                var team = await UpsertTeamAsync(apaTeam, dbDivisionId);
+                if (team is not null)
+                {
+                    result.TeamsSynced++;
+                }
+            }
+
+            result.Success = true;
+        }
+        catch (Exception ex)
+        {
+            result.Success = false;
+            result.Message = ex.Message;
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Syncs schedule (match dates) for a specific division.
+    /// </summary>
+    private async Task<ApaSyncResult> SyncScheduleForDivisionAsync(int apaDivisionId, int dbDivisionId)
+    {
+        var result = new ApaSyncResult();
+
+        try
+        {
+            var apaMatches = await _publicApa.GetScheduleAsync(apaDivisionId);
+
+            foreach (var apaMatch in apaMatches)
+            {
+                var match = await UpsertMatchAsync(apaMatch, dbDivisionId);
+                if (match is not null)
+                {
+                    result.MatchesSynced++;
+                }
+            }
+
+            result.Success = true;
+        }
+        catch (Exception ex)
+        {
+            result.Success = false;
+            result.Message = ex.Message;
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Upserts a session from APA data.
+    /// </summary>
+    private async Task<DbEntities.Session?> UpsertSessionAsync(ApaModels.Session? apaSession)
+    {
+        if (apaSession is null || apaSession.Id == 0)
+            return null;
+
+        var existing = await _db.Sessions
+            .FirstOrDefaultAsync(s => s.SessionIdFromAPA == apaSession.Id);
+
+        // Calculate end date: If weeks provided, use it; otherwise estimate 14 weeks for typical APA session
+        DateOnly? calculatedEndDate = null;
+        if (apaSession.StartDate.HasValue)
+        {
+            var startDate = DateOnly.FromDateTime(apaSession.StartDate.Value);
+            var weeksToAdd = apaSession.Weeks ?? 14; // Default to 14 weeks if not provided
+            calculatedEndDate = startDate.AddDays(weeksToAdd * 7);
+        }
+
+        if (existing is not null)
+        {
+            // Update existing - only update dates if we have new info
+            existing.Name = apaSession.Name;
+            if (apaSession.StartDate.HasValue)
+                existing.StartDate = DateOnly.FromDateTime(apaSession.StartDate.Value);
+            if (calculatedEndDate.HasValue)
+                existing.EndDate = calculatedEndDate.Value;
+            else if (apaSession.EndDate.HasValue)
+                existing.EndDate = DateOnly.FromDateTime(apaSession.EndDate.Value);
+            existing.LastSyncedAt = DateTime.UtcNow;
+            existing.SyncSource = "APA";
+        }
+        else
+        {
+            // Create new
+            var currentYear = DateTime.UtcNow.Year;
+            var startDate = apaSession.StartDate.HasValue 
+                ? DateOnly.FromDateTime(apaSession.StartDate.Value) 
+                : new DateOnly(currentYear, 1, 1);
+
+            var endDate = calculatedEndDate 
+                ?? (apaSession.EndDate.HasValue ? DateOnly.FromDateTime(apaSession.EndDate.Value) : startDate.AddDays(14 * 7));
+
+            existing = new DbEntities.Session
+            {
+                SessionIdFromAPA = apaSession.Id,
+                Name = apaSession.Name,
+                StartDate = startDate,
+                EndDate = endDate,
+                LastSyncedAt = DateTime.UtcNow,
+                SyncSource = "APA"
+            };
+            _db.Sessions.Add(existing);
+        }
+
+        await _db.SaveChangesAsync();
+        return existing;
+    }
+
+    /// <summary>
+    /// Upserts a division from APA data.
+    /// </summary>
+    private async Task<DbEntities.Division?> UpsertDivisionAsync(ApaModels.Division apaDivision, int sessionId)
+    {
+        if (apaDivision.Id == 0)
+            return null;
+
+        var existing = await _db.Divisions
+            .FirstOrDefaultAsync(d => d.DivisionIdFromAPA == apaDivision.Id);
+
+        if (existing is not null)
+        {
+            // Update existing
+            existing.Name = apaDivision.Name;
+            existing.SessionId = sessionId;
+            existing.LastSyncedAt = DateTime.UtcNow;
+            existing.SyncSource = "APA";
+        }
+        else
+        {
+            // Create new
+            existing = new DbEntities.Division
+            {
+                DivisionIdFromAPA = apaDivision.Id,
+                Name = apaDivision.Name,
+                SessionId = sessionId,
+                NightOfPlay = string.Empty,
+                Format = string.Empty,
+                LastSyncedAt = DateTime.UtcNow,
+                SyncSource = "APA"
+            };
+            _db.Divisions.Add(existing);
+        }
+
+        await _db.SaveChangesAsync();
+        return existing;
+    }
+
+    /// <summary>
+    /// Upserts a team from APA data.
+    /// </summary>
+    private async Task<DbEntities.Team?> UpsertTeamAsync(ApaModels.Team apaTeam, int divisionId)
+    {
+        if (apaTeam.Id == 0)
+            return null;
+
+        var existing = await _db.Teams
+            .FirstOrDefaultAsync(t => t.TeamIdFromAPA == apaTeam.Id);
+
+        if (existing is not null)
+        {
+            // Update existing
+            existing.Name = apaTeam.Name;
+            existing.DivisionId = divisionId;
+            existing.LastSyncedAt = DateTime.UtcNow;
+            existing.SyncSource = "APA";
+        }
+        else
+        {
+            // Create new
+            existing = new DbEntities.Team
+            {
+                TeamIdFromAPA = apaTeam.Id,
+                Name = apaTeam.Name,
+                DivisionId = divisionId,
+                Number = string.Empty,
+                LastSyncedAt = DateTime.UtcNow,
+                SyncSource = "APA"
+            };
+            _db.Teams.Add(existing);
+        }
+
+        await _db.SaveChangesAsync();
+        return existing;
+    }
+
+    /// <summary>
+    /// Upserts a match from APA data.
+    /// </summary>
+    private async Task<DbEntities.Match?> UpsertMatchAsync(ApaModels.Match apaMatch, int divisionId)
+    {
+        if (apaMatch.Id == 0 || apaMatch.HomeTeam is null || apaMatch.AwayTeam is null)
+            return null;
+
+        // Find home and away teams in database
+        var homeTeam = await _db.Teams.FirstOrDefaultAsync(t => t.TeamIdFromAPA == apaMatch.HomeTeam.Id);
+        var awayTeam = await _db.Teams.FirstOrDefaultAsync(t => t.TeamIdFromAPA == apaMatch.AwayTeam.Id);
+
+        if (homeTeam is null || awayTeam is null)
+            return null;
+
+        var existing = await _db.Matches
+            .FirstOrDefaultAsync(m => m.MatchIdFromAPA == apaMatch.Id);
+
+        if (existing is not null)
+        {
+            // Update existing
+            existing.MatchDate = apaMatch.Date.HasValue ? DateOnly.FromDateTime(apaMatch.Date.Value) : DateOnly.MinValue;
+            existing.HomeTeamId = homeTeam.Id;
+            existing.AwayTeamId = awayTeam.Id;
+            existing.DivisionId = divisionId;
+            existing.LastSyncedAt = DateTime.UtcNow;
+            existing.SyncSource = "APA";
+        }
+        else
+        {
+            // Create new
+            existing = new DbEntities.Match
+            {
+                MatchIdFromAPA = apaMatch.Id,
+                MatchDate = apaMatch.Date.HasValue ? DateOnly.FromDateTime(apaMatch.Date.Value) : DateOnly.MinValue,
+                HomeTeamId = homeTeam.Id,
+                AwayTeamId = awayTeam.Id,
+                DivisionId = divisionId,
+                LastSyncedAt = DateTime.UtcNow,
+                SyncSource = "APA"
+            };
+            _db.Matches.Add(existing);
+        }
+
+        await _db.SaveChangesAsync();
+        return existing;
+    }
+
+    /// <summary>
+    /// Checks if a sync is needed based on last sync time.
+    /// </summary>
+    public async Task<bool> NeedsSyncAsync(string slug, TimeSpan maxAge)
+    {
+        var divisions = await _db.Divisions
+            .Where(d => d.SyncSource == "APA")
+            .ToListAsync();
+
+        if (!divisions.Any())
+            return true;
+
+        var oldestSync = divisions
+            .Where(d => d.LastSyncedAt.HasValue)
+            .Min(d => d.LastSyncedAt);
+
+        if (oldestSync is null)
+            return true;
+
+        return DateTime.UtcNow - oldestSync.Value > maxAge;
+    }
+}
+
+public class ApaSyncResult
+{
+    public bool Success { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public int SessionsSynced { get; set; }
+    public int DivisionsSynced { get; set; }
+    public int TeamsSynced { get; set; }
+    public int MatchesSynced { get; set; }
+}

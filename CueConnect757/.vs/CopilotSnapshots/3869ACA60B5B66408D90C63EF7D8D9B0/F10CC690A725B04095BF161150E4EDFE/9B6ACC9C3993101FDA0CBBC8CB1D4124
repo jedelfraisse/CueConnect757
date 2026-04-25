@@ -1,0 +1,11 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=CueConnect757;User Id=CueConnect757;Password=CueConnect757;MultipleActiveResultSets=true;TrustServerCertificate=True"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}

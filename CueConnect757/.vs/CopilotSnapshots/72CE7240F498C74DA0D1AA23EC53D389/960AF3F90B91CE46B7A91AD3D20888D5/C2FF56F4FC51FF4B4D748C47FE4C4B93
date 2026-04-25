@@ -1,0 +1,52 @@
+﻿@page "/findplayers"
+
+<PageTitle>Find Players - CueConnect757</PageTitle>
+
+<div class="main-content">
+    <h1>Player Directory & Search</h1>
+    <p class="lead">
+        Connect with pool players in Hampton Roads. Search by skill level, location, 
+        availability, and interests to find practice partners, teammates, or opponents.
+    </p>
+
+    <div class="content-placeholder">
+        <h2>Player Network</h2>
+        <p>This page will feature:</p>
+        <ul>
+            <li>Searchable player directory</li>
+            <li>Filter by skill level (APA/BCA rating)</li>
+            <li>Filter by location and availability</li>
+            <li>Player profiles with stats and history</li>
+            <li>Looking for team / Looking for players status</li>
+            <li>Practice partner matching</li>
+            <li>Private messaging between players</li>
+            <li>Player ratings and endorsements</li>
+            <li>Tournament history and achievements</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .lead {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+    }
+
+    .content-placeholder {
+        background: #f8f9fa;
+        border-left: 4px solid #08AFF2;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+    }
+
+    .content-placeholder h2 {
+        color: #08AFF2;
+        margin-top: 0;
+    }
+
+    .content-placeholder ul {
+        line-height: 1.8;
+    }
+</style>
