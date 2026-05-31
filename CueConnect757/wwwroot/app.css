@@ -4,6 +4,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow-x: hidden;
 }
 
 .top-bar-fixed {
@@ -51,6 +52,16 @@ html, body {
     margin-right: 12px;
     font-size: 1.5rem;
     color: #217a5b;
+    flex-shrink: 0;
+}
+.top-bar-logo-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.top-bar-logo-text {
+    white-space: nowrap;
 }
 .top-bar-nav {
     display: flex;
@@ -65,6 +76,7 @@ html, body {
     font-size: 1.1rem;
     transition: color 0.2s;
     font-weight: 500;
+    white-space: nowrap;
 }
 .top-bar-nav a:hover {
     color: #fff;
@@ -118,6 +130,101 @@ html, body {
     width: 100vw;
 }
 
+/* Hamburger button — hidden on desktop */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 12px;
+    border-radius: 6px;
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    flex-shrink: 0;
+}
+.hamburger-btn:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 24px;
+}
+.hamburger-icon span {
+    display: block;
+    height: 2px;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+}
+.hamburger-icon.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburger-icon.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav drawer */
+.mobile-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1099;
+}
+.mobile-nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: 100dvh;
+    background: #fff;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+.mobile-nav-header {
+    background: #08AFF2;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+.mobile-nav-header .top-bar-logo {
+    font-size: 1.2rem;
+}
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 56px;
+    gap: 12px;
+    transition: background 0.15s;
+}
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+    background: #f0faff;
+    color: #08AFF2;
+    outline: none;
+}
+
 .bottom-bar-fixed {
     position: fixed;
     bottom: 0;
@@ -128,13 +235,18 @@ html, body {
 .bottom-bar {
     background: #08AFF2;
     color: #000;
-    height: 40px;
+    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
     font-weight: 500;
     box-sizing: border-box;
+    padding: 6px 16px;
+    text-align: center;
+}
+.bottom-bar-text {
+    line-height: 1.4;
 }
 .bottom-bar-rail {
     background: #000;
@@ -144,10 +256,20 @@ html, body {
 
 .hero-area {
     background: #75C96B;
-    padding: 48px 0 32px 0;
+    padding: 48px 16px 32px 16px;
     text-align: center;
     margin-top: 66px; /* top bar + rail */
 }
+.hero-area h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 0.5rem;
+}
+.hero-area p {
+    font-size: clamp(0.95rem, 3vw, 1.2rem);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .main-content {
     background: #fff;
     padding: 32px;
@@ -264,16 +386,138 @@ h1:focus {
     color: #2d3a4a;
     font-size: 1rem;
 }
+
+/* Tablet breakpoint */
 @media (max-width: 1100px) {
     .feature-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media (max-width: 700px) {
+
+/* Mobile breakpoint — show hamburger, hide desktop nav */
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 0 16px;
+    }
+
+    .top-bar-nav {
+        display: none;
+    }
+
+    .top-bar-actions {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .top-bar-logo-text {
+        font-size: 1.1rem;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px 16px;
+    }
+
+    .hero-area {
+        padding: 32px 16px 24px 16px;
+    }
+
+    .bottom-bar {
+        font-size: 0.8rem;
+        min-height: 48px;
+        padding: 8px 12px;
+    }
+
+    body {
+        padding-bottom: 54px;
+    }
+
     .feature-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
+
     .feature-card {
-        padding: 18px 12px 16px 12px;
+        padding: 16px 14px;
+        gap: 14px;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .feature-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* Small mobile (375px) */
+@media (max-width: 414px) {
+    .top-bar-logo-text {
+        display: none;
+    }
+
+    .top-bar {
+        padding: 0 12px;
+    }
+}
+
+.mobile-nav-footer {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Shared page styles — mobile improvements */
+.content-placeholder {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.lead {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+@media (max-width: 768px) {
+    .content-placeholder {
+        padding: 1.25rem !important;
+    }
+
+    .content-placeholder ul {
+        padding-left: 1.25rem;
+    }
+
+    /* Leagues page — ensure sync button doesn't overflow */
+    .d-flex.justify-content-between {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    /* Ensure buttons have adequate tap targets */
+    .btn {
+        min-height: 44px;
+    }
+
+    /* Forms */
+    .form-control,
+    .form-select {
+        font-size: 1rem;
+        min-height: 44px;
+    }
+
+    /* Video/iframe embeds */
+    iframe,
+    video {
+        max-width: 100%;
+        height: auto;
     }
 }

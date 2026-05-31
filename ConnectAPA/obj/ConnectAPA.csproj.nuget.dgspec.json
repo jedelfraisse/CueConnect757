@@ -1,40 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Work\\CueConnect757\\ConnectAPA\\ConnectAPA.csproj": {}
+    "/tmp/workspace/jedelfraisse/CueConnect757/ConnectAPA/ConnectAPA.csproj": {}
   },
   "projects": {
-    "C:\\Work\\CueConnect757\\ConnectAPA\\ConnectAPA.csproj": {
+    "/tmp/workspace/jedelfraisse/CueConnect757/ConnectAPA/ConnectAPA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Work\\CueConnect757\\ConnectAPA\\ConnectAPA.csproj",
+        "projectUniqueName": "/tmp/workspace/jedelfraisse/CueConnect757/ConnectAPA/ConnectAPA.csproj",
         "projectName": "ConnectAPA",
-        "projectPath": "C:\\Work\\CueConnect757\\ConnectAPA\\ConnectAPA.csproj",
-        "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-        "outputPath": "C:\\Work\\CueConnect757\\ConnectAPA\\obj\\",
+        "projectPath": "/tmp/workspace/jedelfraisse/CueConnect757/ConnectAPA/ConnectAPA.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/tmp/workspace/jedelfraisse/CueConnect757/ConnectAPA/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 25.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.devexpress.com/Up2amdCwMezibDEoxgrxyQcVvbXK49JEvU5uHnLJ9FPr1hhUmg/api": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -49,10 +39,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Google.Apis.Core": {
@@ -76,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

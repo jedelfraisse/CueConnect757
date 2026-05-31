@@ -111,10 +111,20 @@
     .session-header {
         flex-direction: column;
         align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .session-header h3 {
+        font-size: 1.35rem;
     }
 
     .divisions-grid {
         grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .division-card {
         padding: 1rem;
     }
 
