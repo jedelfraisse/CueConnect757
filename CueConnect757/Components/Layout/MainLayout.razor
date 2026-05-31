@@ -1,14 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-
-
 <div class="top-bar-fixed">
 	<div class="top-bar">
 		<a href="/" class="top-bar-logo">
 			<span class="top-bar-logo-icon">
 				<img src="/images/logo.png" />
 			</span>
-			CueConnect757
+			<span class="top-bar-logo-text">CueConnect757</span>
 		</a>
 		<nav class="top-bar-nav">
 			<a href="/leagues">Leagues</a>
@@ -19,24 +17,66 @@
 			<a href="/events">Events</a>
 			<a href="/findplayers">Find Players</a>
 		</nav>
-        <div class="top-bar-actions">
-            <LoginDisplay />
-        </div>
-    </div>
-    <div class="top-bar-rail"></div>
+		<div class="top-bar-actions">
+			<LoginDisplay />
+		</div>
+		<button class="hamburger-btn" @onclick="ToggleMenu" aria-label="Toggle navigation menu" aria-expanded="@isMobileMenuOpen">
+			<span class="hamburger-icon @(isMobileMenuOpen ? "open" : "")">
+				<span></span>
+				<span></span>
+				<span></span>
+			</span>
+		</button>
+	</div>
+	<div class="top-bar-rail"></div>
 </div>
+
+@if (isMobileMenuOpen)
+{
+	<div class="mobile-nav-backdrop" @onclick="CloseMenu"></div>
+	<nav class="mobile-nav-drawer">
+		<div class="mobile-nav-header">
+			<a href="/" class="top-bar-logo" @onclick="CloseMenu">
+				<span class="top-bar-logo-icon">
+					<img src="/images/logo.png" />
+				</span>
+				CueConnect757
+			</a>
+		</div>
+		<a href="/leagues" class="mobile-nav-link" @onclick="CloseMenu">🏆 Leagues</a>
+		<a href="/teams" class="mobile-nav-link" @onclick="CloseMenu">👥 Teams</a>
+		<a href="/poolhalls" class="mobile-nav-link" @onclick="CloseMenu">📍 Pool Halls</a>
+		<a href="/live" class="mobile-nav-link" @onclick="CloseMenu">📡 Live</a>
+		<a href="/videos" class="mobile-nav-link" @onclick="CloseMenu">🎬 Videos</a>
+		<a href="/events" class="mobile-nav-link" @onclick="CloseMenu">📅 Events</a>
+		<a href="/findplayers" class="mobile-nav-link" @onclick="CloseMenu">🔍 Find Players</a>
+		<div class="mobile-nav-footer">
+			<LoginDisplay />
+		</div>
+	</nav>
+}
 
 @Body
 
 <div class="bottom-bar-fixed">
 	<div class="bottom-bar-rail"></div>
 	<div class="bottom-bar">
-		Created and maintained by Delfraisse.com • All trademarks and copyrights are the property of their respective owners.
+		<span class="bottom-bar-text">Created and maintained by Delfraisse.com • All trademarks and copyrights are the property of their respective owners.</span>
 	</div>
 </div>
 
 @code {
+	private bool isMobileMenuOpen = false;
 
+	private void ToggleMenu()
+	{
+		isMobileMenuOpen = !isMobileMenuOpen;
+	}
+
+	private void CloseMenu()
+	{
+		isMobileMenuOpen = false;
+	}
 }
 
 <div id="blazor-error-ui" data-nosnippet>

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bdQyvYrZYgU=",
+  "dgSpecHash": "YJV5QWrLeVo=",
   "success": true,
-  "projectFilePath": "C:\\Work\\CueConnect757\\ConnectAPA\\ConnectAPA.csproj",
+  "projectFilePath": "/tmp/workspace/jedelfraisse/CueConnect757/ConnectAPA/ConnectAPA.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jonat\\.nuget\\packages\\google.apis.core\\1.73.0\\google.apis.core.1.73.0.nupkg.sha512",
-    "C:\\Users\\jonat\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512"
+    "/home/runner/.nuget/packages/google.apis.core/1.73.0/google.apis.core.1.73.0.nupkg.sha512",
+    "/home/runner/.nuget/packages/newtonsoft.json/13.0.4/newtonsoft.json.13.0.4.nupkg.sha512"
   ],
   "logs": []
 }
